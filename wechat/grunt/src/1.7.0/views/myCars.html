@@ -1,0 +1,123 @@
+<style>
+	.col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9{
+		padding-left:2px;
+		padding-right:2px;
+	}
+	.col-xs-2, .col-xs-8{
+		min-height:35px;
+		line-height:35px;
+	}
+	.item-list{
+		min-height:50px;
+		line-height:36px;
+		padding:.2em .5em;
+		position:relative;
+		
+	}
+	
+	.col-xs-8{
+		min-height:35px;
+		line-height:18px;
+	}
+	.col-xs-8 span{
+		color:#aaa;
+	}
+	
+	.item-list span img{
+		height:35px;
+		width:35px;
+		margin-top:2.5px;
+	}
+	hr {
+		margin-top: .5em;
+		margin-bottom: 0px;
+		border: 0;
+		border-top: 1px solid #eee;
+	}
+	.fa-angle-right{
+		font-size:2em;
+		color:#aaa;
+	}
+	.item-list div:first-child{
+		position:absolute;
+		min-height:50px;
+		line-height:36px;
+		padding:.2em .5em;
+		width:100%;
+		left:0;
+		z-index:2;
+		background: #ffffff;
+	}
+	.delete{
+		position:absolute;
+		width:50px;
+		background:#ff0000;
+		color:#fff;
+		text-align:center;
+		right:0;
+		z-index:0;
+		top:4px;
+	}
+	.swipe-left{
+		-webkit-transform: translate(-50px,0);
+		-ms-transform: translate(-50px,0);
+		-o-transform: translate(-50px,0);
+		transform: translate(-50px,0);
+		-webkit-transition: -webkit-transform 400ms ease;
+		-moz-transition: -moz-transform 400ms ease;
+		-o-transition: -o-transform 400ms ease;
+		transition: transform 400ms ease;
+	}
+	.swipe-right{
+		-webkit-transform: translate(0,0);
+		-ms-transform: translate(0,0);
+		-o-transform: translate(0,0);
+		transform: translate(0,0);
+		-webkit-transition: -webkit-transform 400ms ease;
+		-moz-transition: -moz-transform 400ms ease;
+		-o-transition: -o-transform 400ms ease;
+		transition: transform 400ms ease;
+	}
+</style>
+<div ui-content-for="title">
+  <span>我的车辆</span>
+</div>
+
+<div class="scrollable" ng-controller="myCarsController">  
+  <div class="btn" style="color:#ffffff;position:absolute;right:5px;top:5px;z-index:9999;" ng-click="save();">
+		确定
+  </div>
+  
+  <div class="scrollable-content" style="padding-top:50px;">
+	<div class="item-list" ng-repeat="c in cars">
+		<div ng-swipe-left="swipeLeft($event);"  ng-swipe-right="swipeRight($event);">
+			<span class="col-xs-2" ng-click="goToCar(c);">
+				<img ng-src="{{c.front_image?c.front_image:'images/car.png'}}" />
+			</span>
+			<span class="col-xs-8 " ng-click="goToCar(c);">
+				{{c.brand}} {{c.mode}} {{c.color}}
+				<br/>
+				<span>{{c.car_no}}</span>
+			</span>
+			<span class="col-xs-2 text-center main-text2 choice-option" style="font-size:1.6em;">
+					<i class="fa {{c.id==car.id?'fa-check-circle':'fa-circle-thin'}}" data="{{$index}}"></i>
+			</span>		
+			<div class="clear"></div>
+			<hr/>
+		</div>
+		<div class="delete" ng-click="deleteCar(c.id);">删除</div>
+	</div>
+
+	<div style="height:6em;"></div>
+  </div>
+
+	
+	<div class="nav-bar-bottom">
+		<ul>		
+			<li class="col-xs-12" ng-click="addCar();">
+				<button class="main-bg3">+ 添加车辆</button>
+			</li>
+		</ul>
+	</div>
+
+</div>

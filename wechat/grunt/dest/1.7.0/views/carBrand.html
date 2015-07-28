@@ -1,0 +1,92 @@
+<style>
+	.col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9{
+		padding-left:2px;
+		padding-right:2px;
+	}
+	.col-xs-2, .col-xs-8{
+		min-height:35px;
+		line-height:35px;
+	}
+	.item{
+
+	}
+	.item .title{
+		padding:.2em .5em;
+		background:#ccc;
+		color:#fff;
+	}
+	.item-list{
+		min-height:36px;
+		line-height:36px;
+		padding:.2em .5em;
+
+	}
+	.item-list .col-xs-10 input{
+		width:80%;
+		color:#000;
+		height:35px;
+		border:0px;
+	}
+	.item-list span img{
+		height:35px;
+		margin-top:2.5px;
+	}
+	hr {
+		margin-top: .5em;
+		margin-bottom: 0px;
+		border: 0;
+		border-top: 1px solid #eee;
+	}
+	.fa-angle-right{
+		font-size:2em;
+		color:#aaa;
+	}
+	#searchBar{
+		position:absolute;
+		z-index:99999;
+		right:0;
+		color:#1B62FA;
+		top:50px;
+	}
+	#searchBar span{
+		display:block;
+		padding:0em .5em;
+		font-weight:bold;
+		text-align:center;
+		font-size:.7em;
+	}
+</style>
+<div ng-controller="carBrandController">
+	<div ui-content-for="title">
+	  <span>选择品牌</span>
+	</div>
+	<div id="searchBar">
+		<span ng-click="gotoAnchor($event);" target="brand_{{i.letter}}" ng-repeat="i in carBrands">{{i.letter}}</span>
+	</div>
+	<div class="scrollable">  
+	  <div class="btn hide" style="color:#ffffff;position:absolute;right:5px;top:5px;z-index:9999;" ng-click="save();">
+			确定
+	  </div>
+	 <div style="width:100%;position:absolute;top:50px;left:0px;z-index:9999;">
+			<input ng-model="searchText" type="search" placeholder="搜索...(请输入品牌首字母,比如宝马:b)" style="height:45px;border:1px solid #eee;width:100%;">
+	 </div>
+	  <div class="scrollable-content" style="padding-top:95px;">  		
+		<div class="item" id="brand_{{i.letter}}" ng-repeat="i in carBrands | filter:{letter:searchText}">
+			<div class="title">{{i.letter}}</div>
+			<div class="item-list" ng-repeat="b in i.list" ng-click="gotoSubBrand(b.id);">
+				<span class="col-xs-2">
+					<img ng-src="{{b.icon}}" />
+				</span>
+				<span class="col-xs-10 ">
+					{{b.name}}
+				</span>
+				<div class="clear"></div>
+				<hr ng-show="!$last"/>
+			</div>
+		</div>
+		<br/><br/><br/>
+
+
+	  </div>
+	</div>
+</div>

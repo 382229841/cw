@@ -1,0 +1,142 @@
+<style>
+	.col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9{
+		padding-left:2px;
+		padding-right:2px;
+	}
+	.col-xs-2, .col-xs-8{
+		min-height:35px;
+		line-height:35px;
+	}
+	.item-list{
+		min-height:50px;
+		line-height:36px;
+		padding:.2em .5em;
+
+	}
+	.item-list .col-xs-10 input{
+		width:75%;
+		color:#000;
+		height:35px;
+		border:0px;
+	}
+	.item-list span img{
+		height:35px;
+		width:35px;
+		margin-top:2.5px;
+	}
+	hr {
+		margin-top: .5em;
+		margin-bottom: 0px;
+		border: 0;
+		border-top: 1px solid #eee;
+	}
+	.fa-angle-right{
+		font-size:2em;
+		color:#aaa;
+	}
+	.android-ics.light .dw{
+		margin-left:0%;
+		max-width:100%;
+	}
+	#demo_dummy{
+		display:none;
+	}
+	.fa-sort-desc{
+		color:#aaa;
+		padding-left:.3em;
+		padding-right:.7em;
+	}
+</style>
+
+<div ui-content-for="title">
+  <span>编辑车辆</span>
+</div>
+
+<div class="scrollable" ng-controller="carController">  
+  <div class="btn hide" style="color:#ffffff;position:absolute;right:5px;top:5px;z-index:9999;" ng-click="save();">
+		确定
+  </div>
+  
+  <div class="scrollable-content" style="padding-top:50px;">  
+	<div class="item-list">
+		<span class="col-xs-2">
+			<img src="images/san_icon2.png" />
+		</span>
+		<span class="col-xs-10 " style="white-space:nowrap;">
+			 <span ng-click="getRegion();">
+			 	{{car.city? car.city : '苏'}}<i class="fa fa-sort-desc"></i>
+			 </span>
+			 <span ng-click="getRegionLetter();">
+			 	{{car.cityCode?car.cityCode: 'E'}}<i class="fa fa-sort-desc"></i>			 	
+			 </span>
+			 <input type="text" style="font-size:1.2em;" ng-model="carNo" placeholder="输入车牌号码(5位)" ng-blur="setCar();" ng-keyup="upperCaseCarNo($event);" ng-keydown="checkCarNo($event)"/>
+		</span>
+		<div class="clear"></div>
+		<hr/>
+	</div>
+
+	<div class="item-list" ng-click="selectBrand();">
+		<span class="col-xs-2">
+			<img src="images/icon_right_license.png" />
+		</span>
+		<span class="col-xs-9 ">
+			<span ng-if="car && car.brand">{{car.brand.brand}}  {{car.brand.name}}{{car.brand.mode}}</span>
+			<span ng-if="!car || !car.brand" style="color:#aaa;">请选择您的车辆型号</span>
+		</span>
+		<span class="col-xs-1 text-right">
+				<span>
+					<i class="fa fa-angle-right"></i>
+				</span>
+			</span>
+		<div class="clear"></div>
+		<hr/>
+	</div>
+
+	<div class="item-list">
+		<span class="col-xs-2">
+			<img src="images/car_color.png" />
+		</span>
+		<span class="col-xs-9 " ng-click="goToColor();">
+			<span>
+				<select name="date" id="demo" style="display:none;">
+					<option value="白色">白色</option>
+					<option value="黑色">黑色</option>
+					<option value="红色">红色</option>
+					<option value="蓝色">蓝色</option>
+					<option value="银灰色">银灰色</option>
+					<option value="深灰色">深灰色</option>
+					<option value="黄色">黄色</option>
+					<option value="绿色">绿色</option>
+					<option value="香槟色">香槟色</option>
+					<option value="巧克力色">巧克力色</option>
+					<option value="橙色">橙色</option>
+					<option value="粉色">粉色</option>
+					<option value="紫色">紫色</option>
+				</select>
+				<span ng-if="car.color">{{car.color}}</span>
+
+				<span style="color:gray;" ng-if="!car.color">请选择颜色</span>
+			</span>
+		</span>
+		<span class="col-xs-1 text-right">
+				<span>
+					<i class="fa fa-angle-right"></i>
+				</span>
+			</span>
+		<div class="clear"></div>
+		<hr/>
+	</div>
+
+
+  </div>
+
+	<div style="height:5em;"></div>
+	<div class="nav-bar-bottom">
+		<ul>		
+			<li class="col-xs-12" ng-click="saveCar();">
+				<button class="main-bg3">保存</button>
+			</li>
+		</ul>
+	</div>
+
+</div>

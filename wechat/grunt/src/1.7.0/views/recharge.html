@@ -1,0 +1,240 @@
+<style>
+	.col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9{
+		padding-left:2px;
+		padding-right:2px;
+	}
+	.col-xs-1,.col-xs-2,.col-xs-4,.col-xs-3,.col-xs-7, .col-xs-8, .col-xs-9, .col-xs-12{
+		min-height:40px;
+		line-height:40px;
+	}
+	.item-list{
+		min-height:50px;
+		line-height:25px;
+		padding:.2em .5em;
+		background:#fff;
+
+	}
+	.item-list-head{
+		height:95px;
+		padding:.2em .5em;
+
+	}
+	
+	.item-list-head .col-xs-3{
+		height:80px;
+	}
+	.item-list-head .col-xs-2{
+		height:80px;
+	}
+	.item-list-head .col-xs-1{
+		height:80px;
+		line-height:65px;
+		font-size:2em;
+	}
+
+	.item-list-head span{
+		font-size:.8em;
+	}
+	.item-list span img{
+		height:35px;
+		width:35px;
+		margin-top:2.5px;
+	}
+	hr {
+		margin-top: .5em;
+		margin-bottom: 0px;
+		border: 0;
+		border-top: 1px solid #ddd;
+	}
+	.fa-toggle-off,.fa-angle-right{
+		font-size:2em;
+		color:#aaa;
+	}
+	.fa-toggle-off,.fa-toggle-on{
+		font-size:2.5em;
+		color:#ccc;
+	}
+	.fa-toggle-on{
+		color:#08BC89;
+	}
+	.item-list .col-xs-8{
+		color:#000;
+	}
+	.item-list .col-xs-10 input{
+		width:100%;
+		color:#000;
+		height:35px;
+		border:0px;
+	}
+	.item-list .main-text20,.main-text20{
+		color:gray;
+	}
+	.coupon{
+		border:1.5px solid orange;
+		width:22%;
+		height:70px;
+		color:#EE5220;
+		text-align:center;
+		margin-right:.5em;
+		float:left;
+		margin-bottom:.5em;
+	}
+	.coupon-value{
+		border-bottom:1.5px solid orange;
+		width:100%;
+		height:40px;
+		line-height:40px;
+		font-size:1.5em;
+		font-weight:bold;
+	}
+	.coupon-name{
+		width:100%;
+		height:30px;
+		font-size:1em;
+		line-height:30px;
+	}
+	.coupon-value.active,.coupon-name.active{
+		background:orange;
+		color:#fff;
+	}
+	.coupon-value.active{
+		border-bottom:1.5px solid #fff;
+	}
+	.item{
+		margin:.5em 0;
+		border-top:1px solid #ddd;
+		border-bottom:1px solid #ddd;
+		webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+</style>
+<div ui-content-for="title">
+  <span>账户充值</span>
+</div>
+<div class="scrollable" ng-controller="rechargeController">  
+  <div class="scrollable-content" style="background:#eee;">
+
+    <div class="page-order">
+
+    <div class="item">
+		<div class="item-list">
+			<span class="col-xs-3">
+				充值账户
+			</span>
+			<span class="col-xs-9 text-right">
+				{{account.mobile}}
+			</span>
+			<div class="clear"></div>
+			<hr/>
+		</div>
+
+		<div class="item-list" style="padding-bottom:0em;">
+			<span class="col-xs-3">
+				账户余额
+			</span>
+			<span class="col-xs-9 main-text2 text-right">
+				{{account.balance}}元
+			</span>
+			<div class="clear"></div>
+			
+		</div>
+	</div>
+
+	<div class="item">
+			<div class="item-list" style="padding-bottom:0em;">
+				<span class="col-xs-4" ng-click="rechargeMethod(1);">
+					<i class="fa {{rechargeType==1?'fa-check-circle':'fa-circle-thin'}} main-text2 text-choice"></i>
+					充值金额
+				</span>
+				<span class="col-xs-8 main-text2 text-right">
+					<span ng-show="rechargeType==1">
+						<input type="number" ng-model="defaultAmout" 
+							placeholder="输入金额" 
+							style="text-align: center;height:38px;width:90px;border:1px solid orange" ng-keydown="checkAmountFormat($event)"/>
+						元
+					</span>
+				</span>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div class="item">
+			<div class="item-list">
+				<span class="col-xs-12">
+					<span ng-click="rechargeMethod(2);">
+						<i class="fa {{rechargeType==2?'fa-check-circle':'fa-circle-thin'}} main-text2 text-choice"></i>
+						您也可以选择优惠充值套餐
+					</span>
+					<br/>
+					<div class="text-center">
+						<div style="margin:0 auto;">
+							<div class="coupon" ng-repeat="c in coupons" ng-click="chooseCoupon(c.id,$index)">
+								<div class="coupon-value {{c.class}}">
+									{{c.amount}}
+								</div>
+								<div class="coupon-name {{c.class}}">
+									{{c.allowance==0?'无优惠':'送'+c.allowance}}
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+				</span>
+				<div class="clear"></div>
+			</div>
+		</div>
+
+		<div class="item">
+			<div class="item-list" ng-click="choosePayMetod(1);">
+				<span class="col-xs-4">
+					支付宝支付<i ng-if="payType==1" class="fa fa-check-circle main-text2 text-choice"></i>
+				</span>
+				
+				<span class="col-xs-8 text-right">
+					<img src="images/wp3_alipay.png" style="width:35px;height:auto;"/>
+				</span>
+
+				<div class="clear"></div>
+				<hr/>
+			</div>
+			
+			<div class="item-list" ng-click="choosePayMetod(2);">
+				<span class="col-xs-4">
+					微信支付<i ng-if="payType==2" class="fa fa-check-circle main-text2 text-choice"></i>
+				</span>
+				
+				<span class="col-xs-8 text-right">
+					<img src="images/wp3_wechat.png" style="width:35px;height:auto;"/>
+				</span>
+				<div class="clear"></div>
+				<hr/>
+			</div>
+
+			<div class="item-list" ng-click="choosePayMetod(3);">
+				<span class="col-xs-4">
+					充值卡充值<i ng-if="payType==3" class="fa fa-check-circle main-text2 text-choice"></i>
+				</span>
+				
+				<span class="col-xs-8 text-right">
+					<img src="images/ic_card_purchase_2.png" style="width:35px;height:auto;"/>
+				</span>
+				<div class="clear"></div>
+			</div>
+
+
+		</div>
+		
+		
+		<div style="height:5em;"></div>
+    </div>
+  </div>
+	<div class="nav-bar-bottom">
+		<ul>		
+			<li class="col-xs-12" ng-click="recharge();">
+				<button class="main-bg3">充值</button>
+			</li>
+		</ul>	
+	</div>
+
+
+</div>

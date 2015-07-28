@@ -1,0 +1,79 @@
+<style>
+.col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    padding-left: 2px;
+    padding-right: 2px;
+    white-space:nowrap;
+}
+.teacher-list {
+    height: 65px;
+    line-height: 25px;
+    padding: .2em .5em;
+
+}
+.teacher-list span img {
+    height: 45px;
+    width: 45px;
+    border-radius: 45px;
+    margin-top: 2.5px;
+}
+hr {
+    margin-top: .5em;
+    margin-bottom: 0px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+</style>
+<div ui-content-for="title">
+  <span>选择美车师</span>
+</div>
+<div class="scrollable" ng-controller="teachersController">  
+  <div class="scrollable-content">
+	
+	<div class="home-page hide">
+     <div id="allmap"></div>
+    </div>
+
+    <div class="page-teachers">
+    	<div style="padding:1em;text-align:center;" class="{{isGetLocation?'hide':''}}">正在定位获取您的位置...</div>
+		<div style="padding:1em;text-align:center;" class="{{isGetLocation?'hide':''}}">如果长时间没有定位，请检查GPS是否开启</div>
+		
+		<div style="padding:1em;text-align:center;" class="{{(!cleaners || cleaners.length<1) && isGetLocation?'':'hide'}}">很抱歉，您附近暂时没有可服务的美车师</div>
+		
+		<div class="teacher-list" ng-click="goTeacher($index);" ng-repeat="c in cleaners">
+			<span class="col-xs-2">
+				<img ng-src="{{c.avatar}}" />
+			</span>
+			<span class="col-xs-5">
+				<span>{{c.name}}</span><br/>
+				<span>工号：{{c.work_id}}</span>
+			</span>
+			<span class="col-xs-5 text-right">
+				<span>
+					{{getStar(c.level)}}
+					<i class="main-text2 fa {{star[0]}}"></i>
+					<i class="main-text2 fa {{star[1]}}"></i>
+					<i class="main-text2 fa {{star[2]}}"></i>
+					<i class="main-text2 fa {{star[3]}}"></i>
+					<i class="main-text2 fa {{star[4]}}"></i>
+				</span><br/>
+				<span>相距{{c.distance}}公里</span>
+			</span>
+			<div class="clear"></div>
+			<hr/>
+		</div>
+
+    </div>
+  </div>
+	<div class="nav-bar-bottom hide">
+		<ul>
+			<li class="col-xs-6" ng-click="">
+				<button class="main-bg1">分享有礼</button>
+			</li>
+			<li class="col-xs-6" ng-click="goMap();">
+				<button class="main-bg2">查看地图</button>
+			</li>
+		</ul>
+	</div>
+
+
+</div>

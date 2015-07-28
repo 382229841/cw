@@ -1,0 +1,307 @@
+<style>
+	.nav.nav-tabs{
+		border:0;
+		border-bottom:2px solid #EE5220;
+	}
+	.nav.nav-tabs>li{
+		width:50%;
+		text-align:center;
+	}
+	.nav.nav-tabs>li a,.nav.nav-tabs>li.focus a{
+		border:0;
+	}
+	.nav.nav-tabs>li.active a{
+		border-bottom:3px solid #EE5220;
+		color:#EE5220;
+		
+	}
+	.nav.nav-tabs>li.active a:hover{
+		border:0;
+		border-bottom:3px solid #EE5220;
+	}
+	.nav.nav-tabs>li a:hover{
+		border:0;
+		border-bottom:0px;
+		background-color:#fff;
+	}
+
+
+	.page-header{
+		text-align:center;
+		width:100%;
+		display: inline-block;
+	}
+
+	hr {
+		margin-top: 20px;
+		margin-bottom: 5px;
+		border: 0;
+		border-top: 1px solid #eee;
+	}
+	.col-xs{
+		white-space:nowrap;
+
+	}
+	.item-list-head{
+		position:relative;
+	}
+	.item-list-head div{
+		padding:2.5px 0;
+	}
+
+
+	.coupon{
+        width:95%;
+        margin:0 auto;
+        position:relative;
+        max-width:50em;
+        margin-bottom:15px;
+    }
+    .coupon .coupon-content{
+        background:#FF7A11;
+        height:10.1em;
+        color:#fff;
+    }
+    .coupon .coupon-content-gray{
+        background:#999;
+    }
+    .fa-caret-down,.fa-caret-right{
+    	color:#FF7A11;
+    	font-size:1.5em;
+    }
+    .coupon .coupon-content .region{
+        background: #EE2213;
+        float: right;
+        margin-right: 2.5em;
+        height: 3.5em;
+        line-height: 3.5em;
+        width: 40%;
+        margin-top: .9em;
+        padding-left: .5em;
+    }
+    .coupon .coupon-content .region span{
+        font-weight:bolder;
+        font-size:1.3em;
+        color:#fff;
+    }
+    .coupon .coupon-content .amout{
+        float: left;
+        padding-left: 2em;
+        height:5em;
+        line-height:5em;
+    }
+    .coupon .coupon-content .amout .currency{
+        color:#000000;
+        font-size:3.5em;
+        font-weight:bolder;
+    }
+    .coupon .coupon-content .amout .value{
+        color:#000000;
+        font-size:4.8em;
+        font-weight:bolder;
+        margin-left: -6px;
+    }
+    .coupon .coupon-content .expired{
+        text-align:right;
+        padding:.5em 1em;
+        white-space:nowrap;
+    }
+    .coupon .coupon-content .expired span{
+        color:#000000;
+
+    }
+    .coupon .coupon-title{
+        background:#CC9900;
+        height:3em;
+        text-align:center;
+        color:#fff;
+        line-height:2.5em;
+        font-weight:bolder;
+    }
+    .coupon .coupon-title span{
+        font-size:1.5em;
+    }
+    .sawtooth{
+        position:absolute;
+        width:11em;
+        height:1em;
+        background:transparent;
+        background-image:-webkit-gradient(linear,50% 0,100% 100%,
+                                            from(transparent),
+                                            color-stop(.5,transparent),
+                                            color-stop(.5,#ffffff),
+                                            to(#ffffff)                                            
+                        ),-webkit-gradient(linear,50% 0,0 100%,
+                                            from(transparent),
+                                            color-stop(.5,transparent),
+                                            color-stop(.5,#ffffff),
+                                            to(#ffffff)    
+                        );
+        background-image:-moz-linear-gradient(50% 0 -45deg,
+                                    transparent,
+                                    transparent 50%,
+                                    #ffffff 50%,
+                                    #ffffff                                            
+                        ),-moz-linear-gradient(50% 0 -135deg,
+                                    transparent,
+                                    transparent 50%,
+                                    #ffffff 50%,
+                                    #ffffff                                            
+                        );                                
+        background-size:1em .6em;
+        background-repeat:repeat-x;
+        background-position:0 100%;             
+    }
+    .sawtooth-left{
+        transform: rotate(30deg);
+        -ms-transform: rotate(30deg);
+        -webkit-transform: rotate(90deg);
+        -o-transform: rotate(30deg);
+        -moz-transform: rotate(30deg);
+        bottom: 5em;
+        left: -5em;
+    }
+    .sawtooth-right{
+        transform: rotate(30deg);
+        -ms-transform: rotate(30deg);
+        -webkit-transform: rotate(-90deg);
+        -o-transform: rotate(30deg);
+        -moz-transform: rotate(30deg);
+        bottom: 5em;
+        right: -5em;
+    }
+    @media only screen and (max-width: 450px)
+    {
+        .coupon .coupon-content .region{
+            margin-right: 0.5em;
+            width:45%;
+        }
+        .coupon .coupon-content .amout{
+            padding-left: 0.5em;
+        }
+    }
+    @media only screen and (max-width: 320px)
+    {
+        .coupon .coupon-content .region{
+            width:45%;
+        }
+        .coupon .coupon-content .region span{
+            font-size: 1em;
+        }
+        
+        .coupon .coupon-content .amout .currency{
+            font-size:2.5em
+        }
+        .coupon .coupon-content .amout .value{
+            font-size:4em
+        }
+    }
+    .col-xs{
+    	padding-top:.5em;
+    }
+    .panel-default>.panel-heading{
+    	background:#fff;
+    	padding:5px 5px;
+    }
+    .panel-body{
+		padding:5px 5px;
+    }
+</style>
+<div ui-content-for="title">
+  <span>我的优惠券</span>
+</div>
+
+<div class="scrollable" ng-controller="myCouponsController">  
+  <div class="btn" style="font-size:.9em;color:#ffffff;position:absolute;right:5px;top:5px;z-index:9999;" ng-click="navSave();">
+		添加优惠券
+  </div>
+  
+  <div class="scrollable-content" style="padding-top:50px;" ng-show="!couponPage"> 
+    <h3 class="page-header" ng-show="coupons.length<1">您暂无优惠券</h3> 
+	<div class="panel-group" 
+        
+        ui-state='myAccordion' 
+        ui-default='2'>
+
+        <div class="panel panel-default" ng-repeat="c in coupons" ng-if="c.provider_id!=2">
+          <div class="panel-heading" ui-set="{'myAccordion': c}">
+        
+            <h4 class="panel-title">
+                <i class="fa fa-caret-down" ui-if="myAccordion == c" ui-scope-context='c'></i>
+                <i class="fa fa-caret-right" ui-if="myAccordion != c" ui-scope-context='c'></i>
+                {{c.name}}({{c.list.length}})
+            </h4>
+          </div>
+          <div ui-if="myAccordion == c" ui-scope-context='c'>
+            <div class="panel-body">
+			
+			
+              <div class="coupon" ng-repeat="o in c.list">
+				<div class="coupon-content {{o.status>0?'coupon-content-gray':''}}" ng-click="setCoupon(o);">
+					<span class="col-xs col-xs-9" style="white-space:normal;">{{o.name}}</span>
+					<span class="col-xs col-xs-3 text-right">{{o.status==0?"未使用":o.status==1?"已使用":"已失效"}}</span>
+				    <div class="clear"></div>
+					<span class="col-xs col-xs-2 text-center">
+						<i class="fa fa-car"></i>
+					</span>
+					<span class="col-xs col-xs-10">
+						<span class="col-xs col-xs-12" ng-if="o.coupon_type!=3 && o.provider_id!=2">{{o.memo}}</span>
+						
+						<span class="col-xs col-xs-12" ng-if="o.coupon_type!=3 && o.provider_id==2">
+							{{o.memo.split(' ')[0]}}<br/>
+							{{o.memo.split(' ')[1]}}<br/>
+							<span style="font-size:.7em;">{{o.memo.split(' ')[2]}}</span><br/>
+						</span>
+						<span class="col-xs col-xs-12" ng-if="o.coupon_type==3">小车：{{o.small_car_price}}(原价{{o.small_reference_price}})</span>
+						<span class="col-xs col-xs-12" ng-if="o.coupon_type==3">大车：{{o.big_car_price}}(原价{{o.big_reference_price}})</span>
+					</span>
+
+					<span class="col-xs col-xs-12 text-right">
+						有效期：{{o.expire_date}}
+					</span>
+				</div>
+				<div class="sawtooth sawtooth-left"></div>
+				<div class="sawtooth sawtooth-right"></div>
+			</div>
+			
+			
+			
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+	<div style="height:3em;"></div>
+  </div>
+  
+  <div class="scrollable-content" ng-show="couponPage" style="padding-top:50px;">
+	  
+	  <div style="padding:1em;text-align:center;">
+		<div>请输入优惠券密码：</div>
+		
+		<div style="padding:1.5em 0;color:#fff;">
+			<input style="width:100%;border:1px solid #eee;color:#333;" type="text" ng-model="couponNo" placeholder="请输入优惠券密码"/>
+		</div>
+		
+		<div style="padding:1.5em 0;color:#fff;padding-top:.5em;">
+			<button class="main-bg3" style="border:0;line-height:2.5em;border-radius:5px;" 
+			ng-click="addNewCoupon();">确认添加</button>
+		</div>
+		
+	  
+	  </div>
+
+
+	<div style="height:3em;"></div>
+  </div>
+
+	
+	<div class="nav-bar-bottom hide">
+		<ul>		
+			<li class="col-xs-12">
+				<button class="main-bg3"></button>
+			</li>
+		</ul>
+	</div>
+</div>

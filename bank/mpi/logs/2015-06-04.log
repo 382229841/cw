@@ -1,0 +1,101 @@
+2015-06-04 21:11:48, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[27]------ [处理前台请求开始] 
+2015-06-04 21:11:48, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\payweb_mpi\func\SecureUtil.php ], Line[16]------ [签名报文开始] 
+2015-06-04 21:11:48, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\payweb_mpi\func\SecureUtil.php ], Line[22]------ 签名串 >1.0.00102012015060421110210002015060421110200000000010093032055094000101enhttp://localhost/mpi/proccess/SuccessBack.php127.0.0.1156UTF-86001http://localhost/mpi/proccess/CallBack.php 
+2015-06-04 21:11:48, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\payweb_mpi\func\SecureUtil.php ], Line[31]------ 签名串为 >k+gZEj4J2I+ftRPzFoh3OirzYkCo4JoYmajfd/cXCbtZxLaPG4eKtb8e7xt89sV1JXFPCkExmJSkb+hc5bX8Rmr6wnLmsO2vJ4chbRBJZV0uuvSpppR+YAry5tqrS9ZX8EPEWBVRHNW0zmTPEdvXZwm2Qt5PljrU8MLiU9t3iGw= 
+2015-06-04 21:11:48, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\payweb_mpi\func\SecureUtil.php ], Line[36]------ [签名报文结束] 
+2015-06-04 21:11:48, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[64]------ 前台请求地址为>http://127.0.0.1:8081/PayWeb/netpay/transProcess.do 
+2015-06-04 21:11:48, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[73]------ -------前台交易自动提交表单>--begin---- 
+2015-06-04 21:11:48, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[74]------ <html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body  onload="javascript:document.pay_form.submit();">
+    <form id="pay_form" name="pay_form" action="http://127.0.0.1:8081/PayWeb/netpay/transProcess.do" method="post">
+	    <input type="hidden" name="params" id="params" value="eyJtY2h0QWNjZXNzVHlwZSI6IjAxIiwiY3VycmVuY3lUeXBlIjoiMTU2IiwidmVyc2lvbiI6IjEuMC4wIiwiY2hhcnNldCI6IlVURi04IiwibG9jYWxlIjoiZW4iLCJjaGFubmVsIjoiNjAwMSIsInBheUFjY2Vzc1R5cGVJZCI6IjAxIiwib3JkZXJBbW91bnQiOiIwMDAwMDAwMDAxMDAiLCJvcmRlclRpbWUiOiIyMDE1MDYwNDIxMTEwMiIsIm9yZGVyTnVtYmVyIjoiMTAwMDIwMTUwNjA0MjExMTAyIiwidHJhbnNUeXBlIjoiMDEiLCJtZXJJZCI6IjkzMDMyMDU1MDk0MDAwMSIsInNlY01lcklkIjoiIiwicGF5Q2hhbm5lbCI6IiIsImJhY2tFbmRVcmwiOiJodHRwOi8vbG9jYWxob3N0L21waS9wcm9jY2Vzcy9DYWxsQmFjay5waHAiLCJmcm9udEVuZFVybCI6Imh0dHA6Ly9sb2NhbGhvc3QvbXBpL3Byb2NjZXNzL1N1Y2Nlc3NCYWNrLnBocCIsImN1c3RvbWVySXAiOiIxMjcuMC4wLjEiLCJ0ZXJtVHlwZSI6IjAyIiwic2lnbmF0dXJlIjoiaytnWkVqNEoySStmdFJQekZvaDNPaXJ6WWtDbzRKb1ltYWpmZC9jWENidFp4TGFQRzRlS3RiOGU3eHQ4OXNWMUpYRlBDa0V4bUpTa2IraGM1Ylg4Um1yNnduTG1zTzJ2SjRjaGJSQkpaVjB1dXZTcHBwUitZQXJ5NXRxclM5Wlg4RVBFV0JWUkhOVzB6bVRQRWR2WFp3bTJRdDVQbGpyVThNTGlVOXQzaUd3PSJ9" />
+    <input type="submit" type=\"hidden\">
+    </form>
+</body>
+</html> 
+2015-06-04 21:11:48, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[75]------ -------前台交易自动提交表单>--end------- 
+2015-06-04 21:11:48, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[76]------ ============处理前台请求 结束=========== 
+2015-06-04 21:13:08, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[27]------ [处理前台请求开始] 
+2015-06-04 21:13:08, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\payweb_mpi\func\SecureUtil.php ], Line[16]------ [签名报文开始] 
+2015-06-04 21:13:08, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\payweb_mpi\func\SecureUtil.php ], Line[22]------ 签名串 >1.0.00102012015060421110210002015060421110200000000010093032055094000101enhttp://localhost/mpi/proccess/SuccessBack.php127.0.0.1156UTF-86001http://localhost/mpi/proccess/CallBack.php 
+2015-06-04 21:13:08, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\payweb_mpi\func\SecureUtil.php ], Line[31]------ 签名串为 >k+gZEj4J2I+ftRPzFoh3OirzYkCo4JoYmajfd/cXCbtZxLaPG4eKtb8e7xt89sV1JXFPCkExmJSkb+hc5bX8Rmr6wnLmsO2vJ4chbRBJZV0uuvSpppR+YAry5tqrS9ZX8EPEWBVRHNW0zmTPEdvXZwm2Qt5PljrU8MLiU9t3iGw= 
+2015-06-04 21:13:08, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\payweb_mpi\func\SecureUtil.php ], Line[36]------ [签名报文结束] 
+2015-06-04 21:13:08, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[64]------ 前台请求地址为>http://127.0.0.1:8081/PayWeb/netpay/transProcess.do 
+2015-06-04 21:13:08, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[73]------ -------前台交易自动提交表单>--begin---- 
+2015-06-04 21:13:08, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[74]------ <html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body  onload="javascript:document.pay_form.submit();">
+    <form id="pay_form" name="pay_form" action="http://127.0.0.1:8081/PayWeb/netpay/transProcess.do" method="post">
+	    <input type="hidden" name="params" id="params" value="eyJtY2h0QWNjZXNzVHlwZSI6IjAxIiwiY3VycmVuY3lUeXBlIjoiMTU2IiwidmVyc2lvbiI6IjEuMC4wIiwiY2hhcnNldCI6IlVURi04IiwibG9jYWxlIjoiZW4iLCJjaGFubmVsIjoiNjAwMSIsInBheUFjY2Vzc1R5cGVJZCI6IjAxIiwib3JkZXJBbW91bnQiOiIwMDAwMDAwMDAxMDAiLCJvcmRlclRpbWUiOiIyMDE1MDYwNDIxMTEwMiIsIm9yZGVyTnVtYmVyIjoiMTAwMDIwMTUwNjA0MjExMTAyIiwidHJhbnNUeXBlIjoiMDEiLCJtZXJJZCI6IjkzMDMyMDU1MDk0MDAwMSIsInNlY01lcklkIjoiIiwicGF5Q2hhbm5lbCI6IiIsImJhY2tFbmRVcmwiOiJodHRwOi8vbG9jYWxob3N0L21waS9wcm9jY2Vzcy9DYWxsQmFjay5waHAiLCJmcm9udEVuZFVybCI6Imh0dHA6Ly9sb2NhbGhvc3QvbXBpL3Byb2NjZXNzL1N1Y2Nlc3NCYWNrLnBocCIsImN1c3RvbWVySXAiOiIxMjcuMC4wLjEiLCJ0ZXJtVHlwZSI6IjAyIiwic2lnbmF0dXJlIjoiaytnWkVqNEoySStmdFJQekZvaDNPaXJ6WWtDbzRKb1ltYWpmZC9jWENidFp4TGFQRzRlS3RiOGU3eHQ4OXNWMUpYRlBDa0V4bUpTa2IraGM1Ylg4Um1yNnduTG1zTzJ2SjRjaGJSQkpaVjB1dXZTcHBwUitZQXJ5NXRxclM5Wlg4RVBFV0JWUkhOVzB6bVRQRWR2WFp3bTJRdDVQbGpyVThNTGlVOXQzaUd3PSJ9" />
+    <input type="submit" type=\"hidden\">
+    </form>
+</body>
+</html> 
+2015-06-04 21:13:08, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[75]------ -------前台交易自动提交表单>--end------- 
+2015-06-04 21:13:08, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[76]------ ============处理前台请求 结束=========== 
+2015-06-04 21:16:10, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[27]------ [处理前台请求开始] 
+2015-06-04 21:16:10, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\payweb_mpi\func\SecureUtil.php ], Line[16]------ [签名报文开始] 
+2015-06-04 21:16:10, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\payweb_mpi\func\SecureUtil.php ], Line[22]------ 签名串 >1.0.00102012015060421110210002015060421110200000000010093032055094000101enhttp://localhost/mpi/proccess/SuccessBack.php127.0.0.1156UTF-86001http://localhost/mpi/proccess/CallBack.php 
+2015-06-04 21:16:10, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\payweb_mpi\func\SecureUtil.php ], Line[31]------ 签名串为 >k+gZEj4J2I+ftRPzFoh3OirzYkCo4JoYmajfd/cXCbtZxLaPG4eKtb8e7xt89sV1JXFPCkExmJSkb+hc5bX8Rmr6wnLmsO2vJ4chbRBJZV0uuvSpppR+YAry5tqrS9ZX8EPEWBVRHNW0zmTPEdvXZwm2Qt5PljrU8MLiU9t3iGw= 
+2015-06-04 21:16:10, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\payweb_mpi\func\SecureUtil.php ], Line[36]------ [签名报文结束] 
+2015-06-04 21:16:10, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[64]------ 前台请求地址为>http://127.0.0.1:8081/PayWeb/netpay/transProcess.do 
+2015-06-04 21:16:10, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[73]------ -------前台交易自动提交表单>--begin---- 
+2015-06-04 21:16:10, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[74]------ <html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body  onload="javascript:document.pay_form.submit();">
+    <form id="pay_form" name="pay_form" action="http://127.0.0.1:8081/PayWeb/netpay/transProcess.do" method="post">
+	    <input type="hidden" name="params" id="params" value="eyJtY2h0QWNjZXNzVHlwZSI6IjAxIiwiY3VycmVuY3lUeXBlIjoiMTU2IiwidmVyc2lvbiI6IjEuMC4wIiwiY2hhcnNldCI6IlVURi04IiwibG9jYWxlIjoiZW4iLCJjaGFubmVsIjoiNjAwMSIsInBheUFjY2Vzc1R5cGVJZCI6IjAxIiwib3JkZXJBbW91bnQiOiIwMDAwMDAwMDAxMDAiLCJvcmRlclRpbWUiOiIyMDE1MDYwNDIxMTEwMiIsIm9yZGVyTnVtYmVyIjoiMTAwMDIwMTUwNjA0MjExMTAyIiwidHJhbnNUeXBlIjoiMDEiLCJtZXJJZCI6IjkzMDMyMDU1MDk0MDAwMSIsInNlY01lcklkIjoiIiwicGF5Q2hhbm5lbCI6IiIsImJhY2tFbmRVcmwiOiJodHRwOi8vbG9jYWxob3N0L21waS9wcm9jY2Vzcy9DYWxsQmFjay5waHAiLCJmcm9udEVuZFVybCI6Imh0dHA6Ly9sb2NhbGhvc3QvbXBpL3Byb2NjZXNzL1N1Y2Nlc3NCYWNrLnBocCIsImN1c3RvbWVySXAiOiIxMjcuMC4wLjEiLCJ0ZXJtVHlwZSI6IjAyIiwic2lnbmF0dXJlIjoiaytnWkVqNEoySStmdFJQekZvaDNPaXJ6WWtDbzRKb1ltYWpmZC9jWENidFp4TGFQRzRlS3RiOGU3eHQ4OXNWMUpYRlBDa0V4bUpTa2IraGM1Ylg4Um1yNnduTG1zTzJ2SjRjaGJSQkpaVjB1dXZTcHBwUitZQXJ5NXRxclM5Wlg4RVBFV0JWUkhOVzB6bVRQRWR2WFp3bTJRdDVQbGpyVThNTGlVOXQzaUd3PSJ9" />
+    <input type="submit" type=\"hidden\">
+    </form>
+</body>
+</html> 
+2015-06-04 21:16:10, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[75]------ -------前台交易自动提交表单>--end------- 
+2015-06-04 21:16:10, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[76]------ ============处理前台请求 结束=========== 
+2015-06-04 21:16:35, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[27]------ [处理前台请求开始] 
+2015-06-04 21:16:53, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[27]------ [处理前台请求开始] 
+2015-06-04 21:16:53, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\payweb_mpi\func\SecureUtil.php ], Line[16]------ [签名报文开始] 
+2015-06-04 21:16:53, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\payweb_mpi\func\SecureUtil.php ], Line[22]------ 签名串 >1.0.00102012015060421110210002015060421110200000000010093032055094000101enhttp://localhost/mpi/proccess/SuccessBack.php127.0.0.1156UTF-86001http://localhost/mpi/proccess/CallBack.php 
+2015-06-04 21:16:53, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\payweb_mpi\func\SecureUtil.php ], Line[31]------ 签名串为 >k+gZEj4J2I+ftRPzFoh3OirzYkCo4JoYmajfd/cXCbtZxLaPG4eKtb8e7xt89sV1JXFPCkExmJSkb+hc5bX8Rmr6wnLmsO2vJ4chbRBJZV0uuvSpppR+YAry5tqrS9ZX8EPEWBVRHNW0zmTPEdvXZwm2Qt5PljrU8MLiU9t3iGw= 
+2015-06-04 21:16:53, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\payweb_mpi\func\SecureUtil.php ], Line[36]------ [签名报文结束] 
+2015-06-04 21:16:53, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[64]------ 前台请求地址为>http://127.0.0.1:8081/PayWeb/netpay/transProcess.do 
+2015-06-04 21:16:53, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[73]------ -------前台交易自动提交表单>--begin---- 
+2015-06-04 21:16:53, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[74]------ <html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body  onload="javascript:document.pay_form.submit();">
+    <form id="pay_form" name="pay_form" action="http://127.0.0.1:8081/PayWeb/netpay/transProcess.do" method="post">
+	    <input type="hidden" name="params" id="params" value="eyJtY2h0QWNjZXNzVHlwZSI6IjAxIiwiY3VycmVuY3lUeXBlIjoiMTU2IiwidmVyc2lvbiI6IjEuMC4wIiwiY2hhcnNldCI6IlVURi04IiwibG9jYWxlIjoiZW4iLCJjaGFubmVsIjoiNjAwMSIsInBheUFjY2Vzc1R5cGVJZCI6IjAxIiwib3JkZXJBbW91bnQiOiIwMDAwMDAwMDAxMDAiLCJvcmRlclRpbWUiOiIyMDE1MDYwNDIxMTEwMiIsIm9yZGVyTnVtYmVyIjoiMTAwMDIwMTUwNjA0MjExMTAyIiwidHJhbnNUeXBlIjoiMDEiLCJtZXJJZCI6IjkzMDMyMDU1MDk0MDAwMSIsInNlY01lcklkIjoiIiwicGF5Q2hhbm5lbCI6IiIsImJhY2tFbmRVcmwiOiJodHRwOi8vbG9jYWxob3N0L21waS9wcm9jY2Vzcy9DYWxsQmFjay5waHAiLCJmcm9udEVuZFVybCI6Imh0dHA6Ly9sb2NhbGhvc3QvbXBpL3Byb2NjZXNzL1N1Y2Nlc3NCYWNrLnBocCIsImN1c3RvbWVySXAiOiIxMjcuMC4wLjEiLCJ0ZXJtVHlwZSI6IjAyIiwic2lnbmF0dXJlIjoiaytnWkVqNEoySStmdFJQekZvaDNPaXJ6WWtDbzRKb1ltYWpmZC9jWENidFp4TGFQRzRlS3RiOGU3eHQ4OXNWMUpYRlBDa0V4bUpTa2IraGM1Ylg4Um1yNnduTG1zTzJ2SjRjaGJSQkpaVjB1dXZTcHBwUitZQXJ5NXRxclM5Wlg4RVBFV0JWUkhOVzB6bVRQRWR2WFp3bTJRdDVQbGpyVThNTGlVOXQzaUd3PSJ9" />
+    <input type="submit" type=\"hidden\">
+    </form>
+</body>
+</html> 
+2015-06-04 21:16:53, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[75]------ -------前台交易自动提交表单>--end------- 
+2015-06-04 21:16:53, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[76]------ ============处理前台请求 结束=========== 
+2015-06-04 21:18:57, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[27]------ [处理前台请求开始] 
+2015-06-04 21:18:57, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\payweb_mpi\func\SecureUtil.php ], Line[16]------ [签名报文开始] 
+2015-06-04 21:18:57, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\payweb_mpi\func\SecureUtil.php ], Line[22]------ 签名串 >1.0.00102012015060421185510002015060421185500000000010093032055094000101enhttp://localhost/mpi/proccess/SuccessBack.php127.0.0.1156UTF-86001http://localhost/mpi/proccess/CallBack.php 
+2015-06-04 21:18:57, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\payweb_mpi\func\SecureUtil.php ], Line[31]------ 签名串为 >nBrt8e1PRHVSba/Dj5/9BxdeJuMqYEutpeBge5pJdyCa0ZFYMuwUiIfw0bmgvUTO8tWSe8yrhiD3a5uQbf3Trt4RX1OH1XWgSLv52Sy0YycZT2XwAjEg80/6iO6ibgso29EQ5+4s1qt3DC4gGLGJdv18ddRlel/PWDYAj6l/u2g= 
+2015-06-04 21:18:57, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\payweb_mpi\func\SecureUtil.php ], Line[36]------ [签名报文结束] 
+2015-06-04 21:18:57, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[64]------ 前台请求地址为>http://test.suzhoubank.com/PayWeb/netpay/transProcess.do 
+2015-06-04 21:18:57, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[73]------ -------前台交易自动提交表单>--begin---- 
+2015-06-04 21:18:57, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[74]------ <html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body  onload="javascript:document.pay_form.submit();">
+    <form id="pay_form" name="pay_form" action="http://test.suzhoubank.com/PayWeb/netpay/transProcess.do" method="post">
+	    <input type="hidden" name="params" id="params" value="eyJtY2h0QWNjZXNzVHlwZSI6IjAxIiwiY3VycmVuY3lUeXBlIjoiMTU2IiwidmVyc2lvbiI6IjEuMC4wIiwiY2hhcnNldCI6IlVURi04IiwibG9jYWxlIjoiZW4iLCJjaGFubmVsIjoiNjAwMSIsInBheUFjY2Vzc1R5cGVJZCI6IjAxIiwib3JkZXJBbW91bnQiOiIwMDAwMDAwMDAxMDAiLCJvcmRlclRpbWUiOiIyMDE1MDYwNDIxMTg1NSIsIm9yZGVyTnVtYmVyIjoiMTAwMDIwMTUwNjA0MjExODU1IiwidHJhbnNUeXBlIjoiMDEiLCJtZXJJZCI6IjkzMDMyMDU1MDk0MDAwMSIsInNlY01lcklkIjoiIiwicGF5Q2hhbm5lbCI6IiIsImJhY2tFbmRVcmwiOiJodHRwOi8vbG9jYWxob3N0L21waS9wcm9jY2Vzcy9DYWxsQmFjay5waHAiLCJmcm9udEVuZFVybCI6Imh0dHA6Ly9sb2NhbGhvc3QvbXBpL3Byb2NjZXNzL1N1Y2Nlc3NCYWNrLnBocCIsImN1c3RvbWVySXAiOiIxMjcuMC4wLjEiLCJ0ZXJtVHlwZSI6IjAyIiwic2lnbmF0dXJlIjoibkJydDhlMVBSSFZTYmEvRGo1LzlCeGRlSnVNcVlFdXRwZUJnZTVwSmR5Q2EwWkZZTXV3VWlJZncwYm1ndlVUTzh0V1NlOHlyaGlEM2E1dVFiZjNUcnQ0UlgxT0gxWFdnU0x2NTJTeTBZeWNaVDJYd0FqRWc4MC82aU82aWJnc28yOUVRNSs0czFxdDNEQzRnR0xHSmR2MThkZFJsZWwvUFdEWUFqNmwvdTJnPSJ9" />
+    <input type="submit" type=\"hidden\">
+    </form>
+</body>
+</html> 
+2015-06-04 21:18:57, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[75]------ -------前台交易自动提交表单>--end------- 
+2015-06-04 21:18:57, INFO, 127.0.0.1, File[ D:\xampp\htdocs\xnb\mpi\proccess\TransProcess.php ], Line[76]------ ============处理前台请求 结束=========== 

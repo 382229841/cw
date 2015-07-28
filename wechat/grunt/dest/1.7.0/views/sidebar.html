@@ -1,0 +1,22 @@
+<div class="scrollable">
+  <h1 class="scrollable-header app-name"><small></small></h1>  
+  <div class="scrollable-content" style="background: rgba(0,0,0,1);color:#fff;">
+    <div class="list-group" style="background: rgba(0,0,0,.5);height:100%;" ui-turn-off='uiSidebarLeft'>
+      <span style="background: rgba(0,0,0,.5);color:#fff;border-bottom: 0px solid #ddd;" class="list-group-item text-center">
+          <img style="max-width:35%;border-radius: 80%;" 
+              ng-src="{{rootAct.avatar?rootAct.avatar :'/images/avatar.png'}}"
+          />
+      </span>
+      <span ng-if="rootAct && rootAct.mobile" style="background: rgba(0,0,0,.5);color:#fff;border-bottom: 0px solid #ddd;" class="list-group-item">帐号：
+        <span style="color:#ffffff;font-size:1.2em;">{{rootAct.mobile}}</span>
+      </span>
+      <span style="background: rgba(0,0,0,.5);color:#fff;border-bottom: 0px solid #ddd;" class="list-group-item">余额(元)：{{rootAct.balance || '0.00'}}</span>
+
+      <a style="background: rgba(0,0,0,.5);color:#fff;border-bottom: 0px solid #ddd;" class="hided list-group-item" href="#/myOrders">我的订单 <i class="fa fa-chevron-right pull-right"></i></a>
+       <a style="background: rgba(0,0,0,.5);color:#fff;border-bottom: 0px solid #ddd;" class="hided list-group-item" href="#/myCoupons">我的优惠券 <i class="fa fa-chevron-right pull-right"></i></a>
+      <a style="background: rgba(0,0,0,.5);color:#fff;border-bottom: 0px solid #ddd;" class="hided list-group-item" href="#/recharge">账号充值 <i class="fa fa-chevron-right pull-right"></i></a>
+      <a style="background: rgba(0,0,0,.5);color:#fff;border-bottom: 0px solid #ddd;" class="hided list-group-item" href="#/accountDetail">账户明细 <i class="fa fa-chevron-right pull-right"></i></a>
+     
+    </div>
+  </div>
+</div>

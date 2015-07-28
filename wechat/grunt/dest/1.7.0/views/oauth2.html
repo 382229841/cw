@@ -1,0 +1,22 @@
+<div ui-content-for="title">
+  <span>{{pageTitle}}</span>
+</div>
+<div ng-controller="oauth2Controller" style="background:#ffffff;text-align:center;padding-top:2em;">
+    <span ng-show="!isLogin">微信授权中,请稍候...</span>
+
+    <span ng-show="isLogin">
+        <input type="tel" 
+style="width: 90%;
+border: 0;
+padding: .5em;
+margin-bottom: 1em;" placeholder="请输入您的手机号码" id="mobile" />
+        <br/>
+        <button style="width: 90%;
+line-height: 2.3em;
+color: #fff;
+border: 0;
+font-size: 1.2em;" class="main-bg3" id="btnSetPhone">确定</button>
+
+
+    </span>
+</div>

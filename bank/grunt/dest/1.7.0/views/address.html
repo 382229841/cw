@@ -1,0 +1,23 @@
+<div ui-content-for="title">
+  <span>选择洗车地点</span>
+</div>
+
+<div class="scrollable" ng-controller="addressController">  
+  <div class="btn" style="color:#ffffff;position:absolute;right:5px;top:5px;z-index:9999;" ng-click="save();">
+		确定
+  </div>
+  
+  <div class="scrollable-content" style="padding-top:50px;">  
+	<div id="title" style="height:4.5em;">
+		<div style="width:100%;padding:.5em .5em 0 1em;">{{address1}}&nbsp;</div>
+		<div style="width:100%;padding:.5em;">
+			<input type="text" ng-model="address2" placeholder="可填些详细地址以补充说明" style="width:100%;border:0;"/>
+		</div>
+	</div>
+    <div class="home-page">
+     <div id="allmap"></div>  
+
+    </div>
+  </div>
+
+</div>

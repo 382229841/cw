@@ -1,0 +1,358 @@
+<style>
+	.col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9{
+		padding-left:2px;
+		padding-right:2px;
+	}
+	.col-xs-1,.col-xs-2,.col-xs-4,.col-xs-3,.col-xs-7, .col-xs-8{
+		min-height:35px;
+		line-height:35px;
+	}
+	.item-list{
+		min-height:50px;
+		line-height:25px;
+		padding:.2em .5em;
+
+	}
+	.item-list-head{
+		height:95px;
+		padding:.2em .5em;
+
+	}
+	
+	.item-list-head .col-xs-3{
+		height:80px;
+	}
+	.item-list-head .col-xs-2{
+		height:80px;
+	}
+	.item-list-head .col-xs-1{
+		height:80px;
+		line-height:65px;
+		font-size:2em;
+	}
+
+	.item-list-head span{
+		font-size:.8em;
+	}
+	.item-list span img{
+		height:35px;
+		width:35px;
+		margin-top:2.5px;
+	}
+	hr {
+		margin-top: .5em;
+		margin-bottom: 0px;
+		border: 0;
+		border-top: 1px solid #eee;
+	}
+	.fa-toggle-off,.fa-angle-right{
+		font-size:2em;
+		color:#aaa;
+	}
+	.fa-toggle-off,.fa-toggle-on{
+		font-size:2.5em;
+		color:#ccc;
+	}
+	.fa-toggle-on{
+		color:#08BC89;
+	}
+	.item-list .col-xs-8{
+		color:#000;
+	}
+	.item-list .col-xs-10 input{
+		width:100%;
+		color:#000;
+		height:35px;
+		border:0px;
+	}
+	.item-list .main-text20,.main-text20{
+		color:gray;
+	}
+	.item{
+		margin:1em 0;
+		border-top:1px solid #eee;
+		border-bottom:1px solid #eee;
+		webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+
+	.service-item-title .col-xs-1,
+	.service-item-title .col-xs-2,
+	.service-item-title .col-xs-4,
+	.service-item-title .col-xs-3,
+	.service-item-title .col-xs-7,
+	.service-item-title .col-xs-8{
+		min-height:35px;
+		line-height:35px;
+	}
+	.service-title{
+		padding:.5em 1em;
+		background:#F7F7F7;
+		font-size:1.3em;
+	}
+	.service-item-title{
+		font-weight:bold;
+	}
+	.service-item-title .fa{
+		font-size:1.5em;
+		vertical-align: bottom;
+	}
+	.service-item-title .fa.fa-circle-thin{
+		color:gray;
+	}
+</style>
+<div ui-content-for="title">
+  <span>{{pageTitle}}</span>
+</div>
+<div class="scrollable" ng-controller="paymentController"> 
+  <div class="btn {{(!isShowServiceList && order.status<5)?'hide':'hide'}}" style="color:#ffffff;position:absolute;right:5px;top:5px;z-index:9999;font-size:.9em;" 
+	ng-click="updateOrder(6);">
+		取消
+  </div>
+  <!-- 服务列表页面-->
+  <div class="scrollable-content" ng-show="isShowServiceList" style="padding-top:50px;">
+  		<div class="text-center" style="padding-top:.5em;" ng-show="!services || services.length<1">
+  			<h4 class="page-header text-center">
+  				暂无可追加服务
+			</h4>
+		</div>
+		<div ng-repeat="s in services">
+			<div class="service-title {{s.name=='标准护理'?'service-title-radio':'service-title-multiple'}}" ng-init="sIndex=$index">
+				{{s.name}}
+			</div>
+			<div class="service-item" ng-repeat="c in s.children">
+				<div class="service-item-title">
+					<span class="col-xs-2 text-center choice-option" data="{{sIndex}}-{{$index}}">
+						<i class="fa fa-circle-thin"></i>
+					</span>
+					<span class="col-xs-8" ng-click="goToServiceDetail(c.process_image,c.name);">{{c.name}}</span>
+					<span class="col-xs-2 text-center">￥{{c.price}}</span>
+					<div class="clear"></div>
+				</div>
+				<div class="service-item-content">
+					<span class="col-xs-2"></span>
+					<span class="col-xs-10" ng-click="goToServiceDetail(c.process_image,c.name);">
+						{{c.description}}
+					</span>
+					<div class="clear"></div>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div style="height:9em;"></div>
+  </div>
+  
+
+  <!-- 订单确认页面-->
+  <div class="scrollable-content" ng-show="!isShowServiceList" style="padding-top:50px;">
+
+    <div class="page-order">
+		<div class="item-list-head">
+			<span class="col-xs-2">
+				<img src="images/step1_{{(order.status!=6 && order.status!=7)?'orange':'gray'}}.png" style="width:50px;"/><br/>
+				<span class="{{(order.status!=6 && order.status!=7)?'main-text2':''}}">{{getOrderStatus(order.status)}}</span>
+			</span>
+			<span class="col-xs-1">
+				<img src="images/step_jiantou.png" />
+			</span>
+
+			<span class="col-xs-2">
+				<img src="images/step2_{{((order.status>=3 || order.status==4 || order.status==5) && order.status!=6 && order.status!=7)?'orange':'gray'}}.png" style="width:50px;"/><br/>
+				<span class="main-text20">{{'爱车开洗'}}</span>
+			</span>
+			<span class="col-xs-1">
+				<img src="images/step_jiantou.png" />
+			</span>
+
+			<span class="col-xs-2">
+				<img src="images/step3_{{((order.status>=4 && order.status!=6 && order.status!=7) || order.status==5)?'orange':'gray'}}.png" style="width:50px;"/><br/>
+				<span class="main-text20">爱车出浴</span>
+			</span>
+			<span class="col-xs-1">
+				<img src="images/step_jiantou.png" />
+			</span>
+
+			<span class="col-xs-2">
+				<img src="images/step4_{{(order.status>=5 && order.status!=8 && order.status!=6 && order.status!=7)?'orange':'gray'}}.png" style="width:50px;"/><br/>
+				<span class="main-text20">确认付款</span>
+			</span>
+
+			<div class="clear"></div>
+			<hr/>
+		</div>
+		<div class="item">
+			<div class="item-list">
+				<span class="col-xs-3">
+					汽车类型
+				</span>
+				<span class="col-xs-8 main-text20">
+					{{order.car_type==1?'5座以下轿车':'5座以上汽车'}}
+				</span>
+				<div class="clear"></div>
+				<hr/>
+			</div>
+
+			<div class="item-list">
+				<span class="col-xs-3">
+					我的车牌
+				</span>
+				<span class="col-xs-8 main-text20">
+					{{order.car_no}}
+				</span>
+				<div class="clear"></div>
+				<hr/>
+			</div>
+			<div class="item-list">
+				<span class="col-xs-3">
+					项目服务
+				</span>
+				<span class="col-xs-8 main-text20">
+					<span ng-if="order.services">
+						<span ng-repeat="s in order.services">
+							{{s.service_name}}({{s.amount}}元)
+							<br/>
+						</span>
+						<span class="" ng-if="order.final_amount">
+							总价：{{order.amount}}元<br/>
+							优惠：<span ng-if="(order.amount-order.final_amount)>0">-</span>{{order.amount-order.final_amount}}元<br/> 
+							实付：{{order.final_amount}}元<br/> 
+						</span>
+						<span class="" ng-if="!order.final_amount">
+							总价：{{order.amount}}元<br/>
+						</span>
+					</span>
+
+					
+					
+				</span>
+				<span class="col-xs-1">
+					<i class="fa fa-plus-circle main-text2" ng-if="order.status!=5 && order.status!=6 && order.status!=7" style="font-size:2em;" ng-click="addService();"></i>
+				</span>
+				<div class="clear"></div>
+				<hr/>
+			</div>
+			<div class="item-list">
+				<span class="col-xs-3">
+					预约时间
+				</span>
+				<span class="col-xs-8 main-text20">
+					{{order.reserve_time}}
+				</span>
+				<div class="clear"></div>
+				<hr/>
+			</div>
+			<div class="item-list" style="padding-bottom:0;">
+				<span class="col-xs-3">
+					我的位置
+				</span>
+				<span class="col-xs-9 main-text20">
+					{{order.address}}
+				</span>
+
+				<div class="clear"></div>
+				<hr/>
+			</div>
+			<div class="item-list">
+				<span class="col-xs-3">
+					备注
+				</span>
+				<span class="col-xs-9 main-text20">
+					{{order.comment}}
+				</span>
+				<div class="clear"></div>
+				
+			</div>
+
+			
+
+
+			
+		</div>
+		
+		<div class="item">
+			<div class="item-list" style="padding-bottom:0;">
+				<span class="col-xs-2">
+					<img ng-src="{{cleaner.avatar?cleaner.avatar:'images/avatar.png'}}"  style="border-radius: 50px;"/>
+				</span>
+				<span class="col-xs-8 main-text20">
+						<span 
+							style="width:80px;
+							white-space:nowrap;
+							text-overflow: ellipsis;
+							overflow: hidden;
+							display: inline-block;
+							height: 25px;">
+							{{cleaner.name}}</span>
+
+						{{getStar(cleaner.level)}}
+						<i class="main-text2 fa {{star[0]}}"></i>
+						<i class="main-text2 fa {{star[1]}}"></i>
+						<i class="main-text2 fa {{star[2]}}"></i>
+						<i class="main-text2 fa {{star[3]}}"></i>
+						<i class="main-text2 fa {{star[4]}}"></i>
+						<br/>
+						工号：{{cleaner.work_id}}
+				</span>
+				
+				<span class="col-xs-2 main-text20 text-right">
+					<a ng-show="!isAndroid" style="color:#ffffff;" href="tel:{{cleaner.mobile}}">
+						<img src="images/tel.png" style="width:30px;height:30px;"/>
+						<div class="clear"></div>
+					</a>
+					<span ng-show="isAndroid">
+						<img src="images/tel.png" style="width:30px;height:30px;"/>
+						<div class="clear"></div>
+						<span style="margin-left:-2.2em;color:#EE5220">{{cleaner.mobile}}</span>
+						<div class="clear"></div>
+					</span>
+				</span>
+				<div class="clear"></div>
+			</div>
+			
+		</div>
+		
+				
+		</span>
+		
+		<div style="height:9em;"></div>
+    </div>
+  </div>
+	<div class="nav-bar-bottom" style="height:6.7em;"  ng-show="order.status==4 || order.status==8" ng-if="!isShowServiceList">
+		<ul>		
+			<li class="col-xs-12" ng-click="updateOrder(5);" ng-show="order.status==4 || order.status==8">
+				<button class="main-bg3" style="height:2.3em;">洗的真棒，付款！</button>
+			</li>
+			<li class="col-xs-12" ng-click="updateOrder(8);" ng-show="order.status==4 || order.status==8">
+				<button class="main-bg4" style="height:2.3em;">我靠，洗的不咋地！</button>
+			</li>
+			<li class="col-xs-12" ng-click="updateOrder(6);" ng-show="order.status==4">
+				<button class="main-bg3" style="height:2.3em;">取消订单</button>
+			</li>
+		</ul>	
+	</div>
+	
+	<div class="nav-bar-bottom" style="height:6.7em;"  ng-show="order.status<5 && order.status!=4" ng-if="!isShowServiceList">
+		<ul>
+			<li class="col-xs-12" ng-click="updateOrder(6);" ng-show="order.status<5">
+				<button class="main-bg3" style="height:2.3em;">取消订单</button>
+			</li>
+		</ul>	
+	</div>
+
+	<div class="nav-bar-bottom" style="height:4em;background: rgba(200,200,200,1);" ng-if="isShowServiceList">
+		<ul>	
+			<li class="col-xs-9" style="text-align:left;padding-left:.5em;line-height:2em;font-size:1.3em;" ng-click="order();">
+				<span>
+					费用总计 ￥{{totalAmout}}
+				</span>
+			</li>		
+			<li class="col-xs-3" ng-click="appendService();">
+				<button class="main-bg1" style="height:2.8em;">确定</button>
+			</li>
+		</ul>	
+	</div>
+
+
+
+</div>

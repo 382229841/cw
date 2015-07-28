@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+<title>小牛帮洗车应用下载</title>
+
+<style>
+body{overflow-x:hidden;}
+.line1 {text-align:center}
+.button2 {margin:10px auto; text-align:center;}
+.title2 {margin:5px auto; text-align:center;}
+.word2 {text-align:center;}
+.word2 img {max-width:90%;}
+#cover {
+    top:0;
+    left:0;
+    background-color:rgba(0,0,0, .45);
+    width:100%;
+    height:100%;
+    position:absolute;
+    z-index:100;
+    display:none;
+}
+
+#cover div {
+  width:95%;
+  margin:10px auto;
+  height:auto;
+  padding:10px 5px;
+  border-radius:7px;
+  background-color:#fff;
+  color:#888;
+  font-size:1em;
+}
+
+#cover div img {
+    float:right;
+    position:relative;
+    top:-4px;
+    left:-10px;
+}
+
+</style>
+<script>
+	function isWeixin() {
+		var ua = navigator.userAgent.toLowerCase();
+		if (ua.match(/MicroMessenger/i) == "micromessenger") {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	function downloadAndroid(){
+		if(!isWeixin()){
+			window.location.href="http://www.xiaoniubang.com/appDownload/CarWashClient_code6_V1.3.2.apk";
+		}else{
+			alert("请点击微信右上角按钮，然后在弹出的菜单中，点击在Safari打开，即可安装");
+		}
+		
+	}
+	function downloadIos(){
+		if(!isWeixin()){
+			window.location.href="https://itunes.apple.com/cn/app/xiao-niu-bang/id948540984?mt=8";
+		}else{
+			alert("请点击微信右上角按钮，然后在弹出的菜单中，点击在Safari打开，即可安装");
+		}
+		
+	}
+
+</script>
+</head>
+<body class="all_bg">
+<div class="content2">
+    <div class="line1">
+        <div class="logo2"><img src="images/logo.png"></div>
+        <div class="title2"><img src="images/word2.png"></div>
+    </div>
+        	<div class="button2" onclick="downloadAndroid();"><a><img src="images/button_andriod.png"></a></div>
+       
+    <div class="button2" onclick="downloadIos();"><a><img src="images/button_ios.png"></a></div>
+    <div class="word2"><img src="images/word.png"></div>
+ 
+</div>
+
+
+
+</body></html>

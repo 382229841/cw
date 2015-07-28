@@ -1,0 +1,108 @@
+<style>
+	.car-city{
+		border-right:1px solid #eee;
+		border-bottom:1px solid #eee;
+		min-height:35px;
+		line-height:35px;
+		text-align:center;
+		font-weight:bold;
+	}
+	.car-city-active{
+		background:#08BC89;
+		color:#fff;
+	}
+</style>
+<div ng-controller="carCityController">
+	<div ui-content-for="title">
+	  <span>{{type?'选择城市代码':'选择城市简称'}}</span>
+	</div>
+
+	<div class="scrollable">  
+	  <div class="btn hide" style="color:#ffffff;position:absolute;right:5px;top:5px;z-index:9999;">
+			确定
+	  </div>
+
+	  <div class="scrollable-content" style="padding-top:50px;">
+	  	<span ng-if="!type" class="city-span">
+			<span class="col-xs-3 car-city">苏</span>
+			<span class="col-xs-3 car-city">浙</span>
+			<span class="col-xs-3 car-city">京</span>
+			<span class="col-xs-3 car-city">津</span>
+
+			<span class="col-xs-3 car-city">沪</span>
+			<span class="col-xs-3 car-city">渝</span>
+			<span class="col-xs-3 car-city">冀</span>
+			<span class="col-xs-3 car-city">晋</span>
+
+			<span class="col-xs-3 car-city">辽</span>
+			<span class="col-xs-3 car-city">吉</span>
+			<span class="col-xs-3 car-city">黑</span>
+			<span class="col-xs-3 car-city">皖</span>
+
+			<span class="col-xs-3 car-city">闽</span>
+			<span class="col-xs-3 car-city">赣</span>
+			<span class="col-xs-3 car-city">鲁</span>
+			<span class="col-xs-3 car-city">豫</span>
+
+			<span class="col-xs-3 car-city">鄂</span>
+			<span class="col-xs-3 car-city">湘</span>
+			<span class="col-xs-3 car-city">粤</span>
+			<span class="col-xs-3 car-city">琼</span>
+
+			<span class="col-xs-3 car-city">川</span>
+			<span class="col-xs-3 car-city">贵</span>
+			<span class="col-xs-3 car-city">云</span>
+			<span class="col-xs-3 car-city">陕</span>
+
+			<span class="col-xs-3 car-city">甘</span>
+			<span class="col-xs-3 car-city">青</span>
+			<span class="col-xs-3 car-city">藏</span>
+			<span class="col-xs-3 car-city">桂</span>
+
+			<span class="col-xs-3 car-city">蒙</span>
+			<span class="col-xs-3 car-city">宁</span>
+			<span class="col-xs-3 car-city">新</span>
+		</span>
+
+		<span ng-if="type" class="city-span">
+			<span class="col-xs-3 car-city">A</span>
+			<span class="col-xs-3 car-city">B</span>
+			<span class="col-xs-3 car-city">C</span>
+			<span class="col-xs-3 car-city">D</span>
+
+			<span class="col-xs-3 car-city">E</span>
+			<span class="col-xs-3 car-city">F</span>
+			<span class="col-xs-3 car-city">G</span>
+			<span class="col-xs-3 car-city">H</span>
+
+			<span class="col-xs-3 car-city">I</span>
+			<span class="col-xs-3 car-city">J</span>
+			<span class="col-xs-3 car-city">K</span>
+			<span class="col-xs-3 car-city">L</span>
+
+			<span class="col-xs-3 car-city">M</span>
+			<span class="col-xs-3 car-city">N</span>
+			<span class="col-xs-3 car-city">O</span>
+			<span class="col-xs-3 car-city">P</span>
+
+			<span class="col-xs-3 car-city">Q</span>
+			<span class="col-xs-3 car-city">R</span>
+			<span class="col-xs-3 car-city">S</span>
+			<span class="col-xs-3 car-city">T</span>
+
+			<span class="col-xs-3 car-city">U</span>
+			<span class="col-xs-3 car-city">V</span>
+			<span class="col-xs-3 car-city">W</span>
+			<span class="col-xs-3 car-city">X</span>
+
+			<span class="col-xs-3 car-city">Y</span>
+			<span class="col-xs-3 car-city">Z</span>
+		</span>
+
+
+
+
+	  </div>
+
+	</div>
+</div>

@@ -1,0 +1,272 @@
+<style>
+	.nav.nav-tabs{
+		border:0;
+		border-bottom:2px solid #EE5220;
+	}
+	.nav.nav-tabs>li{
+		width:50%;
+		text-align:center;
+	}
+	.nav.nav-tabs>li a,.nav.nav-tabs>li.focus a{
+		border:0;
+	}
+	.nav.nav-tabs>li.active a{
+		border-bottom:3px solid #EE5220;
+		color:#EE5220;
+		
+	}
+	.nav.nav-tabs>li.active a:hover{
+		border:0;
+		border-bottom:3px solid #EE5220;
+	}
+	.nav.nav-tabs>li a:hover{
+		border:0;
+		border-bottom:0px;
+		background-color:#fff;
+	}
+
+
+	.page-header{
+		text-align:center;
+		width:100%;
+		display: inline-block;
+	}
+
+	hr {
+		margin-top: 20px;
+		margin-bottom: 5px;
+		border: 0;
+		border-top: 1px solid #eee;
+	}
+	.col-xs{
+		white-space:nowrap;
+		padding-left: 0;
+		padding-right: 0;
+	}
+	.col-xs-wrap{
+		padding-left: 5px;
+		padding-right: 0;
+		
+	}
+	.col-xs-title{
+		text-align:right;
+		color:#888;
+		font-size:.9em;
+	}
+	.item-list-head{
+		position:relative;
+	}
+	.item-list-head div{
+		padding:2.5px 0;
+	}
+	
+	#canvas{display:block;margin:100px auto; background:#fff;}
+</style>
+<div ui-content-for="title">
+  <span>我的订单</span>
+</div>
+
+<div class="scrollable" ng-controller="myOrdersController">  
+  <div class="btn hide" style="color:#ffffff;position:absolute;right:5px;top:5px;z-index:9999;" ng-click="save();">
+		确定
+  </div>
+  <div style="background:#ffffff;">
+	  <ul class="nav nav-tabs" ui-state='activeTab' ui-default='currentTab'>
+		  <li ui-class="{'active': activeTab == 1}" ng-click="setCurrentTab(1);">
+			<a ui-set="{'activeTab': 1}">当前订单</a>
+		  </li>
+		  <li ui-class="{'active': activeTab == 2}" ng-click="setCurrentTab(2);">
+			<a ui-set="{'activeTab': 2}">历史订单</a>
+		  </li>
+		</ul>
+  </div>
+  
+  <div class="scrollable-content">  
+	<!--<canvas id="canvas" width="250" height="250">-->
+
+	<div ui-if="activeTab == 1">
+	  <h3 class="page-header" ng-show="currentOrders.length<1">暂无数据</h3>
+	  <!-- ... -->
+	  	<div class="item-list-head" ng-repeat="order in currentOrders" ng-click="goToOrderPage(order.id);">
+	  		<div style="position:absolute;z-index:999999;right:10px;top: 80px;">
+				
+				<img src="images/step_jiantou.png" style="width:20px;"/>
+			</div>
+	  		
+			<div>
+				<span class="col-xs col-xs-2 col-xs-title">
+					订单号:
+				</span>
+				<span class="col-xs col-xs-3">
+					10000{{order.id}}
+				</span>
+				<span class="col-xs col-xs-1">
+					<img src="images/step1_{{(order.status>=1 && order.status!=6 && order.status!=7)?'orange':'gray'}}.png"
+					/>
+				</span>
+
+				<span class="col-xs col-xs-1">
+					<img 
+					src="images/step2_{{(order.status>=3 && order.status!=6 && order.status!=7)?'orange':'gray'}}.png" 
+					style="width:;"/>
+				</span>
+
+				<span class="col-xs col-xs-1">
+					<img src="images/step3_{{(order.status>=4 && order.status!=6 && order.status!=7)?'orange':'gray'}}.png" 
+					style="width:;"/>
+
+				</span>
+
+				<span class="col-xs col-xs-1">
+					<img src="images/step4_{{(order.status>=5 && order.status!=8 && order.status!=6 && order.status!=7)?'orange':'gray'}}.png" 
+					style="width:;"/>
+
+				</span>
+				<span class="col-xs col-xs-2">
+					<span style="color:gray;font-size:.9em;">{{getOrderStatus(order.status);}}</span>
+				</span>
+
+				<div class="clear"></div>
+			</div>
+			<div>
+				<span class="col-xs col-xs-2 col-xs-title">
+					车辆:
+				</span>
+				<span class="col-xs-wrap col-xs-7">
+					{{order.car_no}} {{order.color}} {{order.brand}} {{order.mode}}
+				</span>
+				<span class="col-xs-wrap col-xs col-xs-2">&nbsp;</span>
+				<div class="clear"></div>
+			</div>
+			<div>
+				<span class="col-xs col-xs-2 col-xs-title">
+					服务:
+				</span>
+				<span class="col-xs-wrap col-xs-7">
+					<span style="display:block;" ng-repeat="s in order.services">{{s.service_name}}</span>
+				</span>
+				<span class="col-xs-wrap col-xs col-xs-2">&nbsp;</span>
+				<div class="clear"></div>
+			</div>
+			
+			<div>
+				<span class="col-xs col-xs-2 col-xs-title">
+					预约时间:
+				</span>
+				<span class="col-xs-wrap col-xs-7">
+					{{order.reserve_time}}
+				</span>
+				<span class="col-xs-wrap col-xs col-xs-2">&nbsp;</span>
+				<div class="clear"></div>
+			</div>
+			<div>
+				<span class="col-xs col-xs col-xs-2 col-xs-title">
+					下单时间:
+				</span>
+				<span class="col-xs-wrap col-xs col-xs-7" style="color:gray;">
+					{{order.create_time}}
+				</span>
+				<span class="col-xs-wrap col-xs col-xs-2">&nbsp;</span>
+				<div class="clear"></div>
+			</div>
+			<hr/>
+		</div>
+	</div>
+
+	<div ui-if="activeTab == 2">
+	  <h3 class="page-header" ng-show="orders.length<1">暂无数据</h3>
+	  <!-- ... -->
+	  <div class="item-list-head" ng-repeat="order in orders" ng-click="goToOrderPage(order.id);">
+	  		<div style="position:absolute;z-index:999999;right:10px;top: 80px;">
+				<img src="images/step_jiantou.png" style="width:20px;"/>
+			</div>
+	  		
+			<div>
+				<span class="col-xs col-xs-2 col-xs-title">
+					订单号:
+				</span>
+				<span class="col-xs col-xs-3">
+					10000{{order.id}}
+				</span>
+				<span class="col-xs col-xs-1">
+					<img src="images/step1_{{(order.status>=1 && order.status!=6 && order.status!=7)?'orange':'gray'}}.png"
+					/>
+				</span>
+
+				<span class="col-xs col-xs-1">
+					<img 
+					src="images/step2_{{(order.status>=3 && order.status!=6 && order.status!=7)?'orange':'gray'}}.png" 
+					style="width:;"/>
+				</span>
+
+				<span class="col-xs col-xs-1">
+					<img src="images/step3_{{(order.status>=4 && order.status!=6 && order.status!=7)?'orange':'gray'}}.png" 
+					style="width:;"/>
+
+				</span>
+
+				<span class="col-xs col-xs-1">
+					<img src="images/step4_{{(order.status>=5 && order.status!=8 && order.status!=6 && order.status!=7)?'orange':'gray'}}.png" 
+					style="width:;"/>
+
+				</span>
+				<span class="col-xs col-xs-2">
+					<span style="color:gray;font-size:.9em;">{{getOrderStatus(order.status);}}</span>
+				</span>
+
+				<div class="clear"></div>
+			</div>
+			<div>
+				<span class="col-xs col-xs-2 col-xs-title">
+					车辆:
+				</span>
+				<span class="col-xs-wrap col-xs-8">
+					{{order.car_no}} {{order.color}} {{order.brand}} {{order.mode}}
+				</span>
+				<div class="clear"></div>
+			</div>
+			<div>
+				<span class="col-xs col-xs-2 col-xs-title">
+					服务:
+				</span>
+				<span class="col-xs-wrap col-xs-8">
+					<span style="display:block;" ng-repeat="s in order.services">{{s.service_name}}</span>
+				</span>
+				<div class="clear"></div>
+			</div>
+			
+			<div>
+				<span class="col-xs col-xs-2 col-xs-title">
+					预约时间:
+				</span>
+				<span class="col-xs-wrap col-xs-8">
+					{{order.reserve_time}}
+				</span>
+				<div class="clear"></div>
+			</div>
+			<div>
+				<span class="col-xs col-xs-2 col-xs-title">
+					下单时间:
+				</span>
+				<span class="col-xs-wrap col-xs col-xs-8" style="color:gray;">
+					{{order.create_time}}
+				</span>
+				<div class="clear"></div>
+			</div>
+			<hr/>
+		</div>
+	</div>
+
+
+	<div style="height:3em;"></div>
+  </div>
+
+	
+	<div class="nav-bar-bottom hide">
+		<ul>		
+			<li class="col-xs-12">
+				<button class="main-bg3"></button>
+			</li>
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,34 @@
+<div ui-content-for="title">
+  <span>登录</span>
+</div>
+
+<div class="scrollable" ng-controller="mineController">
+
+ <div class="scrollable-content section main-bg5" style="">
+        <div class="myPhone-content">           
+			<div class="myPhone-item">
+				 <div class="myPhone-item-title text-center" style="padding:.7em 0em;font-size:1.3em;">
+						享最专业、快捷的洗车服务
+				 </div>
+				 <div class="myPhone-item-text" style="white-space: nowrap;">
+					<input style="border:0;border-radius:0;width:65%;" type="tel" ng-model="username" id="myPhoneNumber" placeholder="请输入手机号" onkeydown="checkNumber(this,false);"/>
+				 	<button class="btn check-code" ng-click="check(); " style="background:#DDD;border-color:#DDD;color:#666;border-radius:0;width:35%;font-size:1em;">获取验证码</button>
+				 </div> 
+				
+				<div class="myPhone-item-text">					
+					<input style="border:0;border-radius:0;" type="tel" ng-model="code" id="myCode" placeholder="请输入验证码"/>
+				 </div>
+
+				 <div class="myPhone-item-text" style="margin-left:0px;text-align:center;margin-top:25px;white-space:nowrap;">
+					<button ng-hide="isNextStep" class="btn" ng-click="nextStep();" style="width:98%;">登录</button>
+				 </div>
+
+			</div> 
+		</div>
+
+	<div class="bottom-block"></div>
+ </div>
+ 
+<div class="bottom-block-4x"></div>
+
+</div>

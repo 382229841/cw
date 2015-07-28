@@ -1,0 +1,129 @@
+<style>
+	.col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9{
+		padding-left:2px;
+		padding-right:2px;
+	}
+	.teacher-head{
+		height:150px;
+		padding-top:45px;
+	}
+	.teacher-head-bg{
+		background:#498E19;
+		height:35px;
+		text-align:center;
+		padding:0 .7em;
+	}
+	.teacher-head-bg img{
+		height:90px;
+		width:90px;
+		border-radius: 90px;
+		margin-top:-35px;
+		border:3px solid #498E19;
+	}
+	.teacher-head-bg .pull-left,.teacher-head-bg .pull-right{
+		line-height:35px;
+		color:#ffffff;
+		font-size:1.1em;
+	}
+	.teacher-head-ft .col-xs-2{
+		color:#ffffff;
+	}
+	.teacher-comment-list{
+		padding-top:.5em;
+	}
+	.teacher-comment-list .col-xs-2 img{
+		height:50px;
+		width:50px;
+		border-radius: 50px;
+	}
+	hr {
+		margin-top: .5em;
+		margin-bottom: 0px;
+		border: 0;
+		border-top: 1px solid #eee;
+	}
+</style>
+<div ng-controller="teacherController">
+<div ui-content-for="title">
+  <span>{{cleaner.name}}</span>
+</div>
+<div class="scrollable">  
+  <div class="scrollable-content">
+
+    <div class="page-teacher">
+		<div class="teacher-head main-bg1">
+			<div class="teacher-head-bg">
+				<img ng-src="{{cleaner.avatar}}" />
+				<div class="pull-left"><i class="fa fa-map-marker"></i> &nbsp;{{cleaner.distance}}公里</div>
+				<div class="pull-right">美车数：{{cleaner.order_count}}次</div>
+			</div>
+			<div style="padding:25px .7em 0 .7em;" class="teacher-head-ft text-center">
+				<div class="col-xs-2"><div style="border-radius:1em;width:4em;background:#498E19;"><i class="fa fa-comments-o"></i> &nbsp;{{totalCount}}</div></div>
+				<div class="col-xs-8">
+					<span style="color:#fff;display:block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{cleaner.service_area}}</span>
+					{{getStar(cleaner.level)}}
+					<span style="{{isAndroid? 'margin-left:-2.5em;':''}}">
+					<i class="main-text3 fa {{star[0]}}"></i>
+					<i class="main-text3 fa {{star[1]}}"></i>
+					<i class="main-text3 fa {{star[2]}}"></i>
+					<i class="main-text3 fa {{star[3]}}"></i>
+					<i class="main-text3 fa {{star[4]}}"></i>
+					<span>
+
+				</div>
+				<div class="col-xs-2">
+				<a ng-show="!isAndroid" style="color:#ffffff;" href="tel:{{cleaner.mobile}}"><i class="fa fa-phone-square" style="background:#EE5220;font-size:1.5em;"></i></a>
+				<i ng-show="isAndroid" class="fa fa-phone-square" style="background:#EE5220;font-size:1.5em;"></i>
+				<span ng-show="isAndroid" style="margin-left:-2.5em;color:#EE5220"><br/>{{cleaner.mobile}}</span>
+				</div>
+				<div class="clear"></div>
+			</div>
+
+		</div>
+
+		<div class="teacher-comment">
+			<div class="text-center">
+				<h5 class="page-header" ng-show="!evls || evls.length<1">暂无评论</h5>
+			</div>
+			
+			<div class="teacher-comment-list" ng-repeat="e in evls">
+				<span class="col-xs-2">
+					<img ng-src="{{e.avatar? e.avatar : '/images/avatar.png'}}" />
+				</span>
+				<span class="col-xs-10">
+					{{e.memo}}<br/>
+					<div style="width:100%;">
+
+						{{getStar(e.quantity)}}
+						<i class="main-text2 fa {{star[0]}}"></i>
+						<i class="main-text2 fa {{star[1]}}"></i>
+						<i class="main-text2 fa {{star[2]}}"></i>
+						<i class="main-text2 fa {{star[3]}}"></i>
+						<i class="main-text2 fa {{star[4]}}"></i>
+						<span class="pull-right" style="padding-right:.3em;"> {{e.create_time.substring(0,e.create_time.length-3)}}</span>
+					</div>
+				</span>
+				<div class="clear"></div>
+			</div>
+			<hr/>
+
+
+
+		</div>
+		
+		<div style="height:5em;"></div>
+
+    </div>
+  </div>
+	<div class="nav-bar-bottom">
+		<ul>		
+			<li class="col-xs-12" ng-click="order(cleaner.id);">
+				<button class="main-bg3">就是TA了</button>
+			</li>
+		</ul>	
+	</div>
+
+
+</div>
+
+</div>

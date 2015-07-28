@@ -1,0 +1,139 @@
+<style>
+	.nav.nav-tabs{
+		border:0;
+		border-bottom:2px solid #EE5220;
+	}
+	.nav.nav-tabs>li{
+		width:50%;
+		text-align:center;
+	}
+	.nav.nav-tabs>li a,.nav.nav-tabs>li.focus a{
+		border:0;
+	}
+	.nav.nav-tabs>li.active a{
+		border-bottom:3px solid #EE5220;
+		color:#EE5220;
+		
+	}
+	.nav.nav-tabs>li.active a:hover{
+		border:0;
+		border-bottom:3px solid #EE5220;
+	}
+	.nav.nav-tabs>li a:hover{
+		border:0;
+		border-bottom:0px;
+		background-color:#fff;
+	}
+
+
+	.page-header{
+		text-align:center;
+		width:100%;
+		display: inline-block;
+	}
+
+	hr {
+		margin-top: 15px;
+		margin-bottom: 5px;
+		border: 0;
+		border-top: 1px solid #eee;
+	}
+	.col-xs{
+		white-space:nowrap;
+
+	}
+	.item-list-head{
+		position:relative;
+	}
+	.item-list-head div{
+		padding:2.5px 0;
+	}
+</style>
+<div ui-content-for="title">
+  <span>账户明细</span>
+</div>
+
+<div class="scrollable" ng-controller="accountDetailController">  
+  <div class="btn hide" style="color:#ffffff;position:absolute;right:5px;top:5px;z-index:9999;" ng-click="save();">
+		确定
+  </div>
+  <div style="background:#ffffff;">
+	  <ul class="nav nav-tabs" ui-state='activeTab' ui-default='1'>
+		  <li ui-class="{'active': activeTab == 1}">
+			<a ui-set="{'activeTab': 1}">充值明细</a>
+		  </li>
+		  <li ui-class="{'active': activeTab == 2}">
+			<a ui-set="{'activeTab': 2}">支出明细</a>
+		  </li>
+		</ul>
+  </div>
+  
+  <div class="scrollable-content">  
+	
+
+	<div ui-if="activeTab == 1">
+	  <h3 class="page-header" ng-show="currentOrders.length<1">暂无数据</h3>
+	  <!-- ... -->
+	  	<div class="item-list-head" ng-repeat="order in currentOrders" ng-click="goToOrderPage(order.id);">
+			
+			<div>
+				<span class="col-xs col-xs-6">
+					{{getRechargeType(order.recharge_type)}}
+				</span>
+				<span class="col-xs-6 text-right">
+					{{order.amount}} 元
+				</span>
+				<div class="clear"></div>
+			</div>
+			<div>
+				<span class="col-xs col-xs col-xs-6" style="color:gray;">
+					{{order.create_time}}
+				</span>
+				<span class="col-xs col-xs-6">
+					
+				</span>
+				<div class="clear"></div>
+			</div>
+			<hr/>
+		</div>
+	</div>
+
+	<div ui-if="activeTab == 2">
+	  <h3 class="page-header" ng-show="orders.length<1">暂无数据</h3>
+	  <!-- ... -->
+	  <div class="item-list-head" ng-repeat="order in orders" ng-click="goToOrderPage(order.id);">
+	  		<div>
+				<span class="col-xs col-xs-6">
+					{{getPayType(order.pay_type)}}
+				</span>
+				<span class="col-xs-6 text-right">
+					{{order.amount}} 元
+				</span>
+				<div class="clear"></div>
+			</div>
+			<div>
+				<span class="col-xs col-xs col-xs-6" style="color:gray;">
+					{{order.create_time}}
+				</span>
+				<span class="col-xs col-xs-6">
+					
+				</span>
+				<div class="clear"></div>
+			</div>
+			<hr/>
+		</div>
+	</div>
+
+
+	<div style="height:3em;"></div>
+  </div>
+
+	
+	<div class="nav-bar-bottom hide">
+		<ul>		
+			<li class="col-xs-12">
+				<button class="main-bg3"></button>
+			</li>
+		</ul>
+	</div>
+</div>

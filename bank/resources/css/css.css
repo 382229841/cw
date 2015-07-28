@@ -1,0 +1,29 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{ margin:0; padding:0;}
+img{ border:none;}
+
+/*index1*/
+.all_bg{ background:#fff4ca;}
+.content{ width:860px; margin:0 auto; padding:20px;}
+.cont_left{ width:350px; float:left;}
+
+.top_title{ height:120px; margin-bottom:80px; margin-top:80px;}
+.logo{ float:left; margin-right:30px;}
+.title{ margin-top:15px;}
+
+.download_button{ margin-bottom:80px;}
+.button1{ margin-right:20px; display:block; float:left;} 
+
+.word{ float:left; margin-right:10px; margin-top:30px;}
+
+/*index2*/
+.content2{ width:420px; margin:0 auto; padding:20px;}
+
+.line1{ margin-bottom:50px; height:120px; margin-top:50px;}
+.logo2{ float:left; width:150px; height:120px;}
+.title2{ padding-top:25px;}
+
+.button2{ margin:0 auto; margin-bottom:40px; text-align:center;}
+.word2{ text-align:center; margin-top:60px;}
