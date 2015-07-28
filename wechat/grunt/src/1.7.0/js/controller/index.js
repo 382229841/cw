@@ -411,7 +411,7 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
 			var message="该优惠券只能在小牛帮APP内使用，请下载小牛帮APP";
 			if(coupon.provider_id==4){
 				message="该优惠券只能在小牛帮app和苏州银行内使用，请下载小牛帮app";
-			}			
+			}
 			openDialog(message,"", arrButton, null,
 				function (r) {
 					if (r) {
