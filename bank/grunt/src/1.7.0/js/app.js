@@ -37,9 +37,18 @@ app.config(function($routeProvider) {
 						getUserInfo(u,function(r){
 							if(r.status==1){//120.73083, 31.287715
 								var user=r.data;
+								
 								user.lat=u.latitude;//31.287715;
 								user.lng=u.longitude;//120.73083;
-								if(user.mobile=='13646222355'){
+								
+								if(!u.latitude){
+									alertWarning("定位信息获取失败！");
+									if(user.mobile=='13646222355' || user.mobile=='15855166309'){
+										//user.lat=31.287715;
+										//user.lng=120.73083;
+									}									
+								}
+								if(user.mobile=='13646222355' || user.mobile=='15855166309'){
 									//alert("1"+JSON.stringify(user));
 									//alert("u"+JSON.stringify(u));
 								}
