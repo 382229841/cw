@@ -779,7 +779,7 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
 				car_type:$scope.car.type
 			};
 			if($scope.isUseCoupon){
-				data.coupon_serial_no=$scope.availableCoupons[0].list[0].serial_no;
+				data.coupon_serial_no=$scope.currentCoupon.serial_no || $scope.availableCoupons[0].list[0].serial_no;
 				$scope.getDiscount(data);
 			}else{
 				data.coupon_serial_no='';
@@ -960,7 +960,7 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
 					// +"&orderAmount="+$scope.summary.final_amount || $scope.summary.amount
 					// +"&rechargeType=7"
 					// +"&productId=0");
-			window.location.href="http://m.xiaoniubang.com/ebank/mpi/proccess/TransProcess.php?user_id="+data.user_id
+			window.location.href="http://m.xiaoniubang.com/ebanktest/mpi/proccess/TransProcess.php?user_id="+data.user_id
 					+"&orderNumber="+(new Date()).getTime()
 					+"&orderAmount="+$scope.summary.final_amount || $scope.summary.amount
 					+"&rechargeType=7"
@@ -1023,7 +1023,7 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
 				setRechargeRoute(null);
 				
 				var o=getOrder() || {};
-				
+				//alert(JSON.stringify(o));
 				if(o.ex7!=1){//使用苏州银行1元洗车券是否支付成功 XNBE0EEU939
 					return;
 				}
@@ -1037,7 +1037,7 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
 					lat:o.lat,
 					lng:o.lng,
 					city_code:o.ex2,
-					cleaner_id:o.ex3,
+					cleaner_id:7027 || o.ex3,
 					car_no:o.car.car_no,
 					car_type:o.car.type,
 					car_id:o.car.id,

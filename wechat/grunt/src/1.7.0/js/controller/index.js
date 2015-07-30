@@ -768,7 +768,7 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
 				car_type:$scope.car.type
 			};
 			if($scope.isUseCoupon){
-				data.coupon_serial_no=$scope.availableCoupons[0].list[0].serial_no;
+				data.coupon_serial_no=$scope.currentCoupon.serial_no || $scope.availableCoupons[0].list[0].serial_no;
 				$scope.getDiscount(data);
 			}else{
 				data.coupon_serial_no='';
