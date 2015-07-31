@@ -1,5 +1,5 @@
 app.factory('httpRequest', ['$http', '$q', '$log', function ($http, $q, $log) {
-    return {//0000
+    return {
         Request: function (requestType, api, requestData, header, service, isShowLoading,isCache) {
             var d = $q.defer();
             //requestType 'GET'
@@ -214,7 +214,7 @@ app.factory('signSha1', [function () {
     }
 } ]); 
 app.controller('teachersController', function($rootScope, dataStringify, $scope, $location, signSha1, $routeParams, httpRequest){
-    setDocumentTitle();
+    setDocumentTitle();//
     $rootScope.leftbar="fa-bars";
     $(".app-body").css("padding-top","50px");
 	
@@ -592,14 +592,22 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
 				}
 			}*/
 			var todayUl="<li data-val=\"0.\">今天<ul>";
+			var isToday=false;
 			for(var i=0;i<regionHour;i++){
-				if((fromHour+i)>curHour)
+				if((fromHour+i)>curHour){
+					isToday=true;
 					todayUl=todayUl+"<li data-val=\""+(fromHour+i)+":00 ~ "+(fromHour+i+1)+":00\">"+(fromHour+i)+":00 ~ "+(fromHour+i+1)+":00</li>";					
+				}
 				if(((fromHour+i)==curHour) && curMinute<=30){
+					isToday=true;
 					todayUl=todayUl+"<li data-val=\""+(fromHour+i)+":00 ~ "+(fromHour+i+1)+":00\">"+(fromHour+i)+":00 ~ "+(fromHour+i+1)+":00</li>";
 				}
+				//todayUl=todayUl+"<li data-val=\""+(fromHour+i)+":00 ~ "+(fromHour+i+1)+":00\">"+(fromHour+i)+":00 ~ "+(fromHour+i+1)+":00</li>";		
 			}
 			todayUl=todayUl+"</ul></li>";
+			if(!isToday){
+				todayUl="";
+			}
 
 			tomorrowUl="<li data-val=\"1.\">明天<ul>";
 			aTomorrowUl="<li data-val=\"2.\">后天<ul>";
@@ -913,7 +921,8 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
 			services:angular.toJson(sevs),
 			reserve_time:o.datetime,
 			coupon_serial_no:($scope.isSetCoupon && $scope.isUseCoupon)?$scope.currentCoupon.serial_no:'',
-			comment:o.comment || $scope.comment || ''
+			comment:o.comment || $scope.comment || '',
+			client_version:publishVersion
 		};
         //alert(angular.toJson(data));
 		httpRequest.POST(dataStringify('/order/add_v3',data,true), data, { "Content-Type": "application/json" },true).then(function (result) {
@@ -986,7 +995,8 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
 					services:o.ex4,
 					reserve_time:o.datetime,
 					coupon_serial_no:o.ex5,
-					comment:o.ex6
+					comment:o.ex6,
+					client_version:publishVersion
 				};
 				httpRequest.POST(dataStringify('/order/add_v3',data,true), data, { "Content-Type": "application/json" },true).then(function (result) {
 					if (result.status == 1) {
