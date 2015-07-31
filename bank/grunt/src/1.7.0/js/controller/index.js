@@ -928,7 +928,7 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
 			lat:o.lat,
 			lng:o.lng,
 			city_code:$scope.city_code,
-			cleaner_id:$scope.cleanerId || getCleaner().id,
+			cleaner_id:7027,//$scope.cleanerId || getCleaner().id,
 			car_no:o.car.car_no,
 			car_type:o.car.type,
 			car_id:o.car.id,
@@ -938,7 +938,8 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
 			services:angular.toJson(sevs),
 			reserve_time:o.datetime,
 			coupon_serial_no:($scope.isSetCoupon && $scope.isUseCoupon)?$scope.currentCoupon.serial_no:'',
-			comment:o.comment || $scope.comment || ''
+			comment:o.comment || $scope.comment || '',
+			client_version:publishVersion
 		};
         //alert(angular.toJson(data));
 		if(data.coupon_serial_no && $scope.currentCoupon && $scope.currentCoupon.provider_id==4){
@@ -955,12 +956,12 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
 		   setRechargeRoute({flag:11,cleanerId:$scope.cleanerId || getCleaner().id});
 			
 			// alert(JSON.stringify($scope.summary));
-			// alert("http://m.xiaoniubang.com/ebank/mpi/proccess/TransProcess.php?user_id="+data.user_id
+			// alert("http://m.xiaoniubang.com/ebanktest/mpi/proccess/TransProcess.php?user_id="+data.user_id
 					// +"&orderNumber="+(new Date()).getTime()
 					// +"&orderAmount="+$scope.summary.final_amount || $scope.summary.amount
 					// +"&rechargeType=7"
 					// +"&productId=0");
-			window.location.href="http://m.xiaoniubang.com/ebank/mpi/proccess/TransProcess.php?user_id="+data.user_id
+			window.location.href="http://m.xiaoniubang.com/ebanktest/mpi/proccess/TransProcess.php?user_id="+data.user_id
 					+"&orderNumber="+(new Date()).getTime()
 					+"&orderAmount="+($scope.summary.final_amount || $scope.summary.amount)
 					+"&rechargeType=7"
@@ -1037,7 +1038,7 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
 					lat:o.lat,
 					lng:o.lng,
 					city_code:o.ex2,
-					cleaner_id:o.ex3,//7027
+					cleaner_id:7027,//o.ex3,//7027
 					car_no:o.car.car_no,
 					car_type:o.car.type,
 					car_id:o.car.id,
@@ -1047,7 +1048,8 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
 					services:o.ex4,
 					reserve_time:o.datetime,
 					coupon_serial_no:o.ex5,
-					comment:o.ex6
+					comment:o.ex6,
+					client_version:publishVersion
 				};
 				httpRequest.POST(dataStringify('/order/add_v3',data,true), data, { "Content-Type": "application/json" },true).then(function (result) {
 					//alert(JSON.stringify(result));
@@ -1841,7 +1843,7 @@ app.controller('rechargeController', function($rootScope, $scope, dataStringify,
 		}
 		if($scope.payType===1){//支付宝充值
 			//window.location="http://m.xiaoniubang.com/api/pay/wapali/alipayapi.php?fee="+amount+"&no="+(new Date()).getTime();
-			window.location="/ebank/pay/?amount="+amount
+			window.location="/ebanktest/pay/?amount="+amount
 				+"&no="+(new Date()).getTime()
 				+"&rechargeType="+$scope.payType
 				+"&uid="+$rootScope.user.id
@@ -1849,7 +1851,7 @@ app.controller('rechargeController', function($rootScope, $scope, dataStringify,
 				+"&productId="+$scope.productId;
 		}
 		if($scope.payType===2){//微信充值
-			window.location="/ebank/pay/?amount="+amount
+			window.location="/ebanktest/pay/?amount="+amount
 				+"&no="+(new Date()).getTime()
 				+"&rechargeType="+$scope.payType
 				+"&uid="+$rootScope.user.id
@@ -1857,7 +1859,7 @@ app.controller('rechargeController', function($rootScope, $scope, dataStringify,
 				+"&productId="+$scope.productId;
 		}
 		if($scope.payType===4){//苏州银行手机银行
-			window.location="/ebank/pay/?amount="+amount
+			window.location="/ebanktest/pay/?amount="+amount
 				+"&no="+(new Date()).getTime()
 				+"&rechargeType="+$scope.payType
 				+"&uid="+$rootScope.user.id

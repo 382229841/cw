@@ -723,7 +723,8 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
 			services:angular.toJson(sevs),
 			reserve_time:o.datetime,
 			coupon_serial_no:($scope.isSetCoupon && $scope.isUseCoupon)?$scope.currentCoupon.serial_no:'',
-			comment:o.comment || $scope.comment || ''
+			comment:o.comment || $scope.comment || '',
+			client_version:publishVersion
 		};
         //alert(angular.toJson(data));
 		if(data.coupon_serial_no && $scope.currentCoupon && $scope.currentCoupon.provider_id==4){
@@ -832,7 +833,8 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
 					services:o.ex4,
 					reserve_time:o.datetime,
 					coupon_serial_no:o.ex5,
-					comment:o.ex6
+					comment:o.ex6,
+					client_version:publishVersion
 				};
 				httpRequest.POST(dataStringify('/order/add_v3',data,true), data, { "Content-Type": "application/json" },true).then(function (result) {
 					//alert(JSON.stringify(result));
