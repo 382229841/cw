@@ -1,5 +1,5 @@
 app.factory('httpRequest', ['$http', '$q', '$log', function ($http, $q, $log) {
-    return {
+    return {//0000
         Request: function (requestType, api, requestData, header, service, isShowLoading,isCache) {
             var d = $q.defer();
             //requestType 'GET'

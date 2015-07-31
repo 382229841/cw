@@ -1,5 +1,5 @@
 app.controller('teachersController', function($rootScope, dataStringify, $scope, $location, signSha1, $routeParams, httpRequest){
-    setDocumentTitle();
+    setDocumentTitle();//
     $rootScope.leftbar="fa-bars";
     $(".app-body").css("padding-top","50px");
 	
