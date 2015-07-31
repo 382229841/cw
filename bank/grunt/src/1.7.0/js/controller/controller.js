@@ -747,7 +747,7 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
 					// +"&productId=0");
 			window.location.href="http://m.xiaoniubang.com/ebank/mpi/proccess/TransProcess.php?user_id="+data.user_id
 					+"&orderNumber="+(new Date()).getTime()
-					+"&orderAmount="+$scope.summary.final_amount || $scope.summary.amount
+					+"&orderAmount="+($scope.summary.final_amount || $scope.summary.amount)
 					+"&rechargeType=7"
 					+"&productId=0";
 			return;

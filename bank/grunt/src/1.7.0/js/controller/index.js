@@ -960,9 +960,9 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
 					// +"&orderAmount="+$scope.summary.final_amount || $scope.summary.amount
 					// +"&rechargeType=7"
 					// +"&productId=0");
-			window.location.href="http://m.xiaoniubang.com/ebanktest/mpi/proccess/TransProcess.php?user_id="+data.user_id
+			window.location.href="http://m.xiaoniubang.com/ebank/mpi/proccess/TransProcess.php?user_id="+data.user_id
 					+"&orderNumber="+(new Date()).getTime()
-					+"&orderAmount="+$scope.summary.final_amount || $scope.summary.amount
+					+"&orderAmount="+($scope.summary.final_amount || $scope.summary.amount)
 					+"&rechargeType=7"
 					+"&productId=0";
 			return;
@@ -1037,7 +1037,7 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
 					lat:o.lat,
 					lng:o.lng,
 					city_code:o.ex2,
-					cleaner_id:7027 || o.ex3,
+					cleaner_id:o.ex3,//7027
 					car_no:o.car.car_no,
 					car_type:o.car.type,
 					car_id:o.car.id,
