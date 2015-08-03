@@ -3,6 +3,7 @@ var serviceUrl=(location.host.indexOf('localhost')>-1 || location.host.indexOf('
 var javaServiceUrl=(location.host.indexOf('localhost')>-1 || location.host.indexOf(':')>-1)
     ?"http://www.xiaoniubang.com/api" : "http://www.xiaoniubang.com/api";//: "http://www.xiaoniubang.com/api";
 var publishVersion='1.3.4';
+var payEnvironment="ebanktest";
 var CAR_WASH_CONST={
     appId:"wx6e20ff10bae65ce5",
     secret:"754d73922d673f37631e7f5d3c2f40b7",

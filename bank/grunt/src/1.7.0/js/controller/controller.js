@@ -741,12 +741,12 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
 		   setRechargeRoute({flag:11,cleanerId:$scope.cleanerId || getCleaner().id});
 			
 			// alert(JSON.stringify($scope.summary));
-			// alert("http://m.xiaoniubang.com/ebank/mpi/proccess/TransProcess.php?user_id="+data.user_id
+			// alert("http://m.xiaoniubang.com/"+payEnvironment+"/mpi/proccess/TransProcess.php?user_id="+data.user_id
 					// +"&orderNumber="+(new Date()).getTime()
 					// +"&orderAmount="+$scope.summary.final_amount || $scope.summary.amount
 					// +"&rechargeType=7"
 					// +"&productId=0");
-			window.location.href="http://m.xiaoniubang.com/ebank/mpi/proccess/TransProcess.php?user_id="+data.user_id
+			window.location.href="http://m.xiaoniubang.com/"+payEnvironment+"/mpi/proccess/TransProcess.php?user_id="+data.user_id
 					+"&orderNumber="+(new Date()).getTime()
 					+"&orderAmount="+($scope.summary.final_amount || $scope.summary.amount)
 					+"&rechargeType=7"
@@ -1628,7 +1628,7 @@ app.controller('rechargeController', function($rootScope, $scope, dataStringify,
 		}
 		if($scope.payType===1){//支付宝充值
 			//window.location="http://m.xiaoniubang.com/api/pay/wapali/alipayapi.php?fee="+amount+"&no="+(new Date()).getTime();
-			window.location="/ebank/pay/?amount="+amount
+			window.location="/"+payEnvironment+"/pay/?amount="+amount
 				+"&no="+(new Date()).getTime()
 				+"&rechargeType="+$scope.payType
 				+"&uid="+$rootScope.user.id
@@ -1636,7 +1636,7 @@ app.controller('rechargeController', function($rootScope, $scope, dataStringify,
 				+"&productId="+$scope.productId;
 		}
 		if($scope.payType===2){//微信充值
-			window.location="/ebank/pay/?amount="+amount
+			window.location="/"+payEnvironment+"/pay/?amount="+amount
 				+"&no="+(new Date()).getTime()
 				+"&rechargeType="+$scope.payType
 				+"&uid="+$rootScope.user.id
@@ -1644,7 +1644,7 @@ app.controller('rechargeController', function($rootScope, $scope, dataStringify,
 				+"&productId="+$scope.productId;
 		}
 		if($scope.payType===4){//苏州银行手机银行
-			window.location="/ebank/pay/?amount="+amount
+			window.location="/"+payEnvironment+"/pay/?amount="+amount
 				+"&no="+(new Date()).getTime()
 				+"&rechargeType="+$scope.payType
 				+"&uid="+$rootScope.user.id
