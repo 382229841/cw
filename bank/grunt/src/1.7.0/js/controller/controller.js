@@ -1,6 +1,6 @@
 app.controller('teachersController', function($rootScope, dataStringify, $scope, $location, signSha1, $routeParams, httpRequest){
     setDocumentTitle();
-	//alert("当前URL"+$location.absUrl());
+	//alert("当前URL"+$location.absUrl());--t
     $rootScope.leftbar="fa-bars";
     $(".app-body").css("padding-top","50px");
 	
