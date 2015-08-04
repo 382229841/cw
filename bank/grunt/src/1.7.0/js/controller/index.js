@@ -373,6 +373,32 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
 	$rootScope.pageTitle="预约洗车";
 	$rootScope.couponPage=false;
 	$scope.selectCoupon=function(type,addType){
+		if($scope.isSZBankPay){
+			var arrButton = ["取消","确定"];
+			var msg="您已经使用了苏州银行手机银行支付享受优惠,不能再使用优惠券！确定取消苏州银行手机银行支付再使用优惠券？";
+			
+			openDialog(msg,"", arrButton, null,
+				function (r) {
+					if (r) {
+						$scope.toggleSZBankPay(function(){
+							$rootScope.couponPage=true;
+							$rootScope.isNoBack=true;
+							$rootScope.pageTitle="优惠券";
+							$scope.couponPageType=type;
+							if(addType==1){
+								$scope.addCouponType=addType;
+							}else{
+								$scope.addCouponType=0;
+							}
+							
+						});
+					}
+			});
+			return;
+		}
+		
+		
+		
 		$rootScope.couponPage=true;
 		$rootScope.isNoBack=true;
 		$rootScope.pageTitle="优惠券";
@@ -391,6 +417,7 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
     $scope.getDiscount=function(data,callback){
 		//alert(angular.toJson(data));
 		httpRequest.Get(dataStringify('/order/discount/details',data),true,{}).then(function (result) {
+			  //alert(JSON.stringify(result));
 			  if (result && result.status == statusMsg.Success) {
 				
 				$scope.summary.total_amount=result.total_amount;
@@ -403,7 +430,10 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
 				}
 				
 			  }else{
-			  	//alertWarning(result.message);
+				if (result.status == '173022'){
+					//alert(JSON.stringify(result));
+					alertWarning(result.message);
+				}			  	
 			  	$scope.summary.total_amount=$scope.totalAmout;
 			  	$scope.summary.pay_off=0;
 			  	$scope.summary.final_amount=$scope.totalAmout;
@@ -759,7 +789,59 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
 		
     
     $scope.isUseCoupon = true;
-    $scope.toggleCoupon=function(){
+    $scope.toggleCoupon=function(callback){
+		if($scope.isSZBankPay){
+			var arrButton = ["取消","确定"];
+			var msg="您已经使用了苏州银行手机银行支付享受优惠,不能再使用优惠券！确定取消苏州银行手机银行支付再使用优惠券？";
+			
+			openDialog(msg,"", arrButton, null,
+				function (r) {
+					if (r) {
+						$scope.toggleSZBankPay(function(){
+							$scope.isUseCoupon=!$scope.isUseCoupon;
+							$scope.$apply($scope.isUseCoupon);	
+							var sevs=[];
+
+							if($scope.content){
+								var o=$scope.content || [];
+								for(var i=0;i<o.length;i++){
+									var s={};
+									s.service_id=o[i].id;
+									s.count=1;
+									sevs.push(s);				
+								}
+								var data={
+									user_id:$rootScope.user.id ,
+									services:angular.toJson(sevs),
+									city_code:$scope.city_code,
+									car_type:$scope.car.type
+								};
+								if($scope.isUseCoupon){
+									data.coupon_serial_no=$scope.currentCoupon.serial_no || $scope.availableCoupons[0].list[0].serial_no;
+									$scope.getDiscount(data);
+								}else{
+									data.coupon_serial_no='';
+									$scope.getDiscount(data,function(s){
+										$scope.summary.total_amount=s.total_amount;
+										$scope.summary.pay_off=0;
+										$scope.summary.final_amount=s.total_amount;
+										$scope.$apply($scope.summary);										
+									});
+								}
+								
+							}						
+							
+							
+						});
+						
+						
+					}
+			});
+			return;
+		}
+		
+		
+		
     	$scope.isUseCoupon=!$scope.isUseCoupon;
 
     	var sevs=[];
@@ -780,7 +862,9 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
 			};
 			if($scope.isUseCoupon){
 				data.coupon_serial_no=$scope.currentCoupon.serial_no || $scope.availableCoupons[0].list[0].serial_no;
-				$scope.getDiscount(data);
+				$scope.getDiscount(data,function(){
+					if(callback){callback();}
+				});
 			}else{
 				data.coupon_serial_no='';
 				$scope.getDiscount(data,function(s){
@@ -788,11 +872,114 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
 					$scope.summary.pay_off=0;
 					$scope.summary.final_amount=s.total_amount;
 					$scope.$apply($scope.summary);
+					if(callback){
+						callback();
+					}
 				});
 			}
 			
 		}
     };
+	//苏州银行手机银行支付
+	
+	$scope.isSZBankPay = false;
+    $scope.toggleSZBankPay=function(callback){
+		
+		if(!$scope.content || ($scope.content && $scope.content.length<1)){
+			alertWarning("请先选择您要服务的项目");
+			return;
+		}
+		
+		if($scope.isSetCoupon && $scope.isUseCoupon){
+			var arrButton = ["取消","确定"];
+			var msg="您已经使用了优惠券,不能再使用苏州银行手机银行支付享受优惠！确定取消优惠券再使用苏州银行手机银行支付？";
+			
+			openDialog(msg,"", arrButton, null,
+				function (r) {
+					if (r) {
+						$scope.toggleCoupon(function(){
+							$scope.isSZBankPay=!$scope.isSZBankPay;
+							var sevs=[];
+
+							if($scope.content){
+								var o=$scope.content || [];
+								for(var i=0;i<o.length;i++){
+									var s={};
+									s.service_id=o[i].id;
+									s.count=1;
+									sevs.push(s);				
+								}
+								var data={
+									user_id:$rootScope.user.id ,
+									services:angular.toJson(sevs),
+									city_code:$scope.city_code,
+									car_type:$scope.car.type
+								};
+								if($scope.isSZBankPay){
+									data.corporator_id=4;
+									//alert(JSON.stringify(data));
+									$scope.getDiscount(data);
+								}else{
+									data.corporator_id=undefined;
+									$scope.getDiscount(data,function(s){
+										$scope.summary.total_amount=s.total_amount;
+										$scope.summary.pay_off=0;
+										$scope.summary.final_amount=s.total_amount;
+										$scope.$apply($scope.summary);
+									});
+								}
+								
+							}
+							
+						});						
+					}
+			});
+			return;			
+		}
+		
+    	$scope.isSZBankPay=!$scope.isSZBankPay;
+    	var sevs=[];
+
+		if($scope.content){
+			var o=$scope.content || [];
+			for(var i=0;i<o.length;i++){
+				var s={};
+				s.service_id=o[i].id;
+				s.count=1;
+				sevs.push(s);				
+			}
+			var data={
+				user_id:$rootScope.user.id ,
+				services:angular.toJson(sevs),
+				city_code:$scope.city_code,
+				car_type:$scope.car.type
+			};
+			if($scope.isSZBankPay){
+				data.corporator_id=4;
+				//alert(JSON.stringify(data));
+				$scope.getDiscount(data,function(){
+					if(callback){callback();}
+				});
+			}else{
+				//data.corporator_id=undefined;
+				$scope.getDiscount(data,function(s){
+					$scope.summary.total_amount=s.total_amount;
+					$scope.summary.pay_off=0;
+					$scope.summary.final_amount=s.total_amount;
+					$scope.$apply($scope.summary);
+					if(callback){
+						callback();
+					}
+				});
+			}
+			
+		}
+    };
+	
+	
+	
+	
+	
 	$scope.saveOrder=function(){
 		var order=getOrder();
 		if(order){
@@ -941,6 +1128,9 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
 			comment:o.comment || $scope.comment || '',
 			client_version:publishVersion
 		};
+		if($scope.isSZBankPay){
+			data.corporator_id=4;
+		}
         //alert(angular.toJson(data));
 		if(data.coupon_serial_no && $scope.currentCoupon && $scope.currentCoupon.provider_id==4){
 		   var od=getOrder() || {};
@@ -951,6 +1141,7 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
 		   od.ex5=data.coupon_serial_no;
 		   od.ex6=data.comment;
 		   od.ex7=0;//是否已充值成功
+		   
 		   setOrder(od);
 		   
 		   setRechargeRoute({flag:11,cleanerId:$scope.cleanerId || getCleaner().id});
@@ -999,6 +1190,7 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
 							   od.ex4=data.services;
 							   od.ex5=data.coupon_serial_no;
 							   od.ex6=data.comment;
+							   od.ex8=$scope.isSZBankPay;
 							   setOrder(od);
 							   
 							   setRechargeRoute({flag:1,cleanerId:$scope.cleanerId || getCleaner().id});
@@ -1029,6 +1221,7 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
 					return;
 				}
 				
+				
 				var data={
 					user_id:o.ex1 ,
 					need_invoice:'0',
@@ -1051,6 +1244,9 @@ app.controller('orderController', function($rootScope, dataStringify, $scope, $l
 					comment:o.ex6,
 					client_version:publishVersion
 				};
+				if(o.ex8){
+					data.corporator_id=4;
+				}
 				httpRequest.POST(dataStringify('/order/add_v3',data,true), data, { "Content-Type": "application/json" },true).then(function (result) {
 					//alert(JSON.stringify(result));
 					if (result.status == 1) {
