@@ -215,7 +215,7 @@
 						</span>
 						<span class="" ng-if="order.final_amount">
 							总价：{{order.amount}}元<br/>
-							优惠：<span ng-if="(order.amount-order.final_amount)>0">-</span>{{order.amount-order.final_amount}}元<br/> 
+							优惠：<span ng-if="(order.amount-order.final_amount)>0">-</span>{{(order.amount-order.final_amount) | number:2}}元<br/> 
 							实付：{{order.final_amount}}元<br/> 
 						</span>
 						<span class="" ng-if="!order.final_amount">
